@@ -33,6 +33,14 @@ class ViewController: UIViewController
         
     }
     
+    //working on buttons and two story boards
+    @IBAction func didTapRegister()
+    {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "second_vc") as! SecondViewController
+        present(vc,animated: true)
+    }
+    
+    
 
     @IBAction func LoginButton(_ sender: Any)
     {
@@ -49,12 +57,17 @@ class ViewController: UIViewController
         let username = _username.text
         let password = _password.text
         
+        //if enters no user name then it wont allow u to go on
         if(username == "" || password == "")
         {
             return
         }
         
+        //gonna need some type of if statement here
         DoLogin(username!, password!)
+        
+        let vc3 = storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
+        present(vc3, animated:true )
     }
     
     func DoLogin(_ user:String, _ psw:String)
@@ -125,5 +138,8 @@ class ViewController: UIViewController
         
       //  _login_button.setTitle("Logout", for: .normal)
     }
+    
+    
+
 }
 

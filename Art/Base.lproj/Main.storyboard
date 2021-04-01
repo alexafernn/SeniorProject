@@ -17,9 +17,9 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Art" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main_vc " id="BYZ-38-t0r" customClass="ViewController" customModule="Art" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-e0-GSf">
@@ -62,7 +62,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="LoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cAZ-0q-A0m"/>
-                                    <segue destination="hHV-O9-Bad" kind="show" id="nK3-pn-14U"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Future Tech LeadHERS!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qf-z4-e1r">
@@ -82,7 +81,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhg-ej-Xxd">
-                                <rect key="frame" x="142" y="617" width="131" height="32"/>
+                                <rect key="frame" x="141" y="617" width="131" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.58431372550000005" green="0.57647058819999997" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
@@ -95,7 +94,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="zfT-yk-aTy" kind="show" id="9mt-Se-BWK"/>
+                                    <action selector="didTapRegister" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Ra-Ze-gFs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -112,12 +111,12 @@
             </objects>
             <point key="canvasLocation" x="155.07246376811597" y="-395.08928571428572"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="rc5-HX-gHL">
             <objects>
-                <viewController id="zfT-yk-aTy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="second_vc" id="zfT-yk-aTy" customClass="SecondViewController" customModule="Art" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WXd-x7-BvW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Register:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kle-MD-JKw">
@@ -232,7 +231,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="U9D-U9-LRR"/>
+                                    <action selector="didSignUp" destination="zfT-yk-aTy" eventType="touchUpInside" id="NLX-38-7M1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How did you learn about Code/Art:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncM-ez-gnG">
@@ -262,7 +261,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="eRE-0V-nbI"/>
+                                    <action selector="didCancel" destination="zfT-yk-aTy" eventType="touchUpInside" id="7J4-uD-9bI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -274,12 +273,12 @@
             </objects>
             <point key="canvasLocation" x="971" y="-395"/>
         </scene>
-        <!--View Controller-->
+        <!--Third View Controller-->
         <scene sceneID="oN9-Gx-Sa4">
             <objects>
-                <viewController id="hHV-O9-Bad" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="third_vc" id="hHV-O9-Bad" customClass="ThirdViewController" customModule="Art" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k66-Uv-Euk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-CG-mdS">
@@ -295,9 +294,6 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="5Dj-bB-eAn" kind="show" id="kDK-rC-gI2"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lea-Fd-YSL">
                                 <rect key="frame" x="84" y="487" width="246" height="100"/>
@@ -327,17 +323,22 @@
                         <viewLayoutGuide key="safeArea" id="NbH-Zj-ZU7"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6x3-M5-FW5">
+                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="ikb-5M-COF">
+                            <color key="tintColor" red="0.20620399710000001" green="0.21659949419999999" blue="0.55679821969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqB-8m-dgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153.62318840579712" y="292.63392857142856"/>
+            <point key="canvasLocation" x="1063.768115942029" y="292.63392857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="o5a-nT-Hhi">
             <objects>
                 <viewController id="5Dj-bB-eAn" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wOe-d3-aUB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csm-rg-jgp">
@@ -431,10 +432,11 @@
                         <viewLayoutGuide key="safeArea" id="UpZ-n9-LpH"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0lV-UO-CzS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSq-mK-20r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="293"/>
+            <point key="canvasLocation" x="1942.0289855072465" y="292.63392857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ur5-6M-cqg">
@@ -544,7 +546,7 @@
             <objects>
                 <viewController id="eUq-0M-0ma" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nh2-jk-C2q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="El0-mW-dvg">
@@ -564,12 +566,29 @@
             </objects>
             <point key="canvasLocation" x="1062" y="1008"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pJO-uU-BCJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bk3-ei-KC7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="WLa-8A-pp2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qfq-bI-PLu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hHV-O9-Bad" kind="relationship" relationship="rootViewController" id="Q68-gO-mAa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUE-lS-FsJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="153.62318840579712" y="292.63392857142856"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="eRE-0V-nbI"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Screen Shot 2021-03-29 at 7.55.13 PM" width="1130" height="500"/>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
