@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*register view controller*/
 class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
