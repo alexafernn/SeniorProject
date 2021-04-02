@@ -13,9 +13,9 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
 {
     private var sideMenu: SideMenuNavigationController?
     
-    private let settingsController = SettingsViewController()
-    private let infoController = InfoViewController()
-    
+    private let internshipsController = FourthViewController()
+    private let eventsController = FifthViewController()
+    //need to make profile
     
     
     override func viewDidLoad() {
@@ -33,10 +33,24 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
 
     private func addChildControllers()
     {
-        addChild(settingsController)
-        addChild(infoController)
-        view.addSubview(settingsController.view)
-        view.addSubview(infoController)
+        //adding child to child controller
+        addChild(internshipsController)
+        addChild(eventsController)
+        
+        //adding the childs view
+        view.addSubview(internshipsController.view)
+        view.addSubview(eventsController.view)
+        
+        //setting view to be size of the whole screen
+        internshipsController.view.frame = view.bounds
+        eventsController.view.frame = view.bounds
+
+        //you are a child under parent
+        internshipsController.didMove(toParent: self)
+        eventsController.didMove(toParent: self)
+        
+        internshipsController.view.isHidden = true
+        eventsController.view.isHidden = true
     }
     
     @IBAction func didTapInternships()
@@ -62,22 +76,33 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         //when you choose an item you want to get rid of the side menu
         sideMenu?.dismiss(animated:true, completion:
         //based on whichever was chosen go to that screen
-        {
+        { [weak self] in
             if named == "Home"
             {
-                
+                self?.internshipsController.view.isHidden = true
+                self?.eventsController.view.isHidden = true
             }
             else if named == "Internships"
             {
-                
+                print("pressed internships")
+                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "fourth_vc") as! FourthViewController
+                self?.present(vc,animated: true)
+//                self?.internshipsController.view.isHidden = false
+//                self?.eventsController.view.isHidden = true
             }
             else if named == "Events"
             {
-                
+                print("pressed events")
+                let vc2 = self?.storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
+                self?.present(vc2,animated: true)
+//                self?.internshipsController.view.isHidden = true
+//                self?.eventsController.view.isHidden = false
+
             }
             else if named == "Profile"
             {
-                
+                print("pressed Profile")
+                //come back to
             }
         })
         
