@@ -102,6 +102,9 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
             else if named == "Profile"
             {
                 print("pressed Profile")
+                let vc3 = self?.storyboard?.instantiateViewController(withIdentifier: "sixth_vc") as! SixthViewController
+                self?.present(vc3,animated: true)
+//                self?.navigationController?.popViewController(animated: true)
                 //come back to
             }
         })
