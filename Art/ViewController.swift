@@ -5,13 +5,12 @@
 //  Created by Alexa on 2/10/21.
 //  Copyright © 2021 Alexa. All rights reserved.
 //
-
+import SideMenu
 import UIKit
 
 /*Main view controller*/
 class ViewController: UIViewController
 {
-
     //variables of front screen
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
@@ -66,7 +65,8 @@ class ViewController: UIViewController
         //gonna need some type of if statement here
         DoLogin(username!, password!)
         
-        let vc3 = storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
+        //let vc3 = storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
+        let vc3 = storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
         present(vc3, animated:true )
     }
     
