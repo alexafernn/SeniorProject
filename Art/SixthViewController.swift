@@ -20,9 +20,6 @@ class SixthViewController: UIViewController
 
     @IBAction func didTapUpdate()
     {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
-//        present(vc,animated: true)
-        
         self.dismiss(animated: true, completion: nil)
     }
     

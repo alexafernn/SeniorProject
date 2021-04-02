@@ -15,8 +15,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
     
     private let internshipsController = FourthViewController()
     private let eventsController = FifthViewController()
-    //need to make profile
-    
+    private let profileController = SixthViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +39,21 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         //adding the childs view
         view.addSubview(internshipsController.view)
         view.addSubview(eventsController.view)
+        view.addSubview(profileController.view)
         
         //setting view to be size of the whole screen
         internshipsController.view.frame = view.bounds
         eventsController.view.frame = view.bounds
+        profileController.view.frame = view.bounds
 
         //you are a child under parent
         internshipsController.didMove(toParent: self)
         eventsController.didMove(toParent: self)
+        profileController.didMove(toParent:self)
         
         internshipsController.view.isHidden = true
         eventsController.view.isHidden = true
+        profileController.view.isHidden = true
     }
     
     @IBAction func didTapInternships()
