@@ -13,9 +13,11 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
 {
     private var sideMenu: SideMenuNavigationController?
     
-    private let internshipsController = FourthViewController()
-    private let eventsController = FifthViewController()
-    private let profileController = SixthViewController()
+
+    lazy var internshipsController = storyboard?.instantiateViewController(withIdentifier: "fourth_vc") as! FourthViewController
+    lazy var eventsController = storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
+    lazy var profileController = storyboard?.instantiateViewController(withIdentifier: "sixth_vc") as! SixthViewController
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +34,11 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
 
     private func addChildControllers()
     {
+        
         //adding child to child controller
         addChild(internshipsController)
         addChild(eventsController)
+        addChild(profileController)
         
         //adding the childs view
         view.addSubview(internshipsController.view)
@@ -49,7 +53,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         //you are a child under parent
         internshipsController.didMove(toParent: self)
         eventsController.didMove(toParent: self)
-        profileController.didMove(toParent:self)
+        profileController.didMove(toParent: self)
         
         internshipsController.view.isHidden = true
         eventsController.view.isHidden = true
@@ -58,15 +62,17 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
     
     @IBAction func didTapInternships()
     {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "fourth_vc") as! FourthViewController
-        present(vc,animated: true)
+        self.internshipsController.view.isHidden = false
+        self.eventsController.view.isHidden = true
+        self.profileController.view.isHidden = true
     }
     
     
     @IBAction func didTapEvents()
     {
-        let vc2 = storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
-        present(vc2,animated: true)
+        self.internshipsController.view.isHidden = true
+        self.eventsController.view.isHidden = false
+        self.profileController.view.isHidden = true
     }
 
     @IBAction func didTapMenuButton()
@@ -76,39 +82,40 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
     
     func didSelectMenuItem(named: String) //*
     {
-        //when you choose an item you want to get rid of the side menu
+        //when you choose an item you want to get rid of th e side menu
         sideMenu?.dismiss(animated:true, completion:
         //based on whichever was chosen go to that screen
         { [weak self] in
+            
             if named == "Home"
             {
+                print("pressed home")
                 self?.internshipsController.view.isHidden = true
                 self?.eventsController.view.isHidden = true
+                self?.profileController.view.isHidden = true
             }
             else if named == "Internships"
             {
                 print("pressed internships")
-                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "fourth_vc") as! FourthViewController
-                self?.present(vc,animated: true)
-//                self?.internshipsController.view.isHidden = false
-//                self?.eventsController.view.isHidden = true
+                self?.internshipsController.view.isHidden = false
+                self?.eventsController.view.isHidden = true
+                self?.profileController.view.isHidden = true
             }
             else if named == "Events"
             {
                 print("pressed events")
-                let vc2 = self?.storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
-                self?.present(vc2,animated: true)
-//                self?.internshipsController.view.isHidden = true
-//                self?.eventsController.view.isHidden = false
+                self?.internshipsController.view.isHidden = true
+                self?.eventsController.view.isHidden = false
+                self?.profileController.view.isHidden = true
 
             }
             else if named == "Profile"
             {
                 print("pressed Profile")
-                let vc3 = self?.storyboard?.instantiateViewController(withIdentifier: "sixth_vc") as! SixthViewController
-                self?.present(vc3,animated: true)
-//                self?.navigationController?.popViewController(animated: true)
-                //come back to
+                self?.internshipsController.view.isHidden = true
+                self?.eventsController.view.isHidden = true
+                self?.profileController.view.isHidden = false
+                
             }
         })
         
@@ -120,6 +127,7 @@ protocol MenuControllerDelegate
 {
     func didSelectMenuItem(named: String)
 }
+
 class MenuController: UITableViewController
 {
     public var delegate: MenuControllerDelegate?
