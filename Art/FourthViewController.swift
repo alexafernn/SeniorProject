@@ -10,110 +10,131 @@ import SideMenu
 import UIKit
 
 /*internships view controller*/
-class FourthViewController: UIViewController/*, MenuControllerDelegate*/
+class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-//    private var sideMenu: SideMenuNavigationController?
     
-        //private let internshipsController = FourthViewController()
-        //private let homeController = ThirdViewController()
-//    private let eventsController = FifthViewController()
-//    private let profileController = SixthViewController()
+    //creating table view object with requirements
+    let tableview: UITableView =
+    {
+        let table_view = UITableView()
+        table_view.backgroundColor = UIColor.white
+        table_view.separatorColor = UIColor.white
+        table_view.translatesAutoresizingMaskIntoConstraints = false
+        return table_view
+    }()
+
     
     override func viewDidLoad()
     {
-        
         super.viewDidLoad()
-//        let menu = MenuController(with: ["Home", "Internships", "Events", "Profile"])
-//        menu.delegate = self //delegating to itself to come into the funciton below *
-//        sideMenu = SideMenuNavigationController(rootViewController: menu)
-//        sideMenu?.leftSide=true
-//        SideMenuManager.default.leftMenuNavigationController = sideMenu
-//        SideMenuManager.default.addPanGestureToPresent(toView: view)
-//
-//        addChildControllers()
+        arrangeTableView()
     }
     
-//    private func addChildControllers()
-//    {
-//        //adding child to child controller
-//        //addChild(internshipsController)
-//       // addChild(homeController)
-//        addChild(profileController)
-//        addChild(eventsController)
-//
-//        //adding the childs view
-//        //view.addSubview(internshipsController.view)
-//       // view.addSubview(homeController.view)
-//        view.addSubview(profileController.view)
-//        view.addSubview(eventsController.view)
-//
-//        //setting view to be size of the whole screen
-//       // internshipsController.view.frame = view.bounds
-//       // homeController.view.frame = view.bounds
-//        profileController.view.frame = view.bounds
-//        eventsController.view.frame = view.bounds
-//
-//        //you are a child under parent
-//       // internshipsController.didMove(toParent: self)
-//       // homeController.didMove(toParent: self)
-//        profileController.didMove(toParent: self)
-//        eventsController.didMove(toParent: self)
-//
-//        //internshipsController.view.isHidden = true
-//        //homeController.view.isHidden = true
-//        profileController.view.isHidden = true
-//        eventsController.view.isHidden = true
-//    }
+    //arranging the table view with constraints
+    func arrangeTableView()
+    {
+        tableview.delegate = self
+        tableview.dataSource = self
+        //tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        tableview.register(NewCell.self, forCellReuseIdentifier: "cellID")
+        view.addSubview(tableview)
+        
+        NSLayoutConstraint.activate(
+        [
+            tableview.topAnchor.constraint(equalTo: self.view.topAnchor),
+            tableview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
+        ])
+     }
     
-//    @IBAction func didTapMenuButton()
-//    {
-//        present(sideMenu!, animated: true)
-//    }
-//
-//    func didSelectMenuItem(named: String) //*
-//    {
-//        //when you choose an item you want to get rid of the side menu
-//        sideMenu?.dismiss(animated:true, completion:
-//        //based on whichever was chosen go to that screen
-//        { [weak self] in
-//            if named == "Home"
-//            {
-//                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
-//                self?.present(vc,animated: true)
-////                self?.internshipsController.view.isHidden = true
-////                self?.eventsController.view.isHidden = true
-//            }
-//            else if named == "Internships"
-//            {
-//                print("pressed internships")
-//                //self?.homeController.view.isHidden = true
-//               // self?.eventsController.view.isHidden = true
-//                    //self?.profileController.view.isHidden = true
-////                let vc = self?.storyboard?.instantiateViewController(withIdentifier: "fourth_vc") as! FourthViewController
-////                self?.present(vc,animated: true)
-////                self?.internshipsController.view.isHidden = false
-////                self?.eventsController.view.isHidden = true
-//            }
-//            else if named == "Events"
-//            {
-//                print("pressed events")
-//                let vc2 = self?.storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
-//                self?.present(vc2,animated: true)
-////                self?.internshipsController.view.isHidden = true
-////                self?.eventsController.view.isHidden = false
-//
-//            }
-//            else if named == "Profile"
-//            {
-//                print("pressed Profile")
-//                let vc3 = self?.storyboard?.instantiateViewController(withIdentifier: "sixth_vc") as! SixthViewController
-//                self?.present(vc3,animated: true)
-////                self?.navigationController?.popViewController(animated: true)
-//                //come back to
-//            }
-//        })
-//
-//    }
-//}
+    //setting 10 number of cells in the table View
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+            // want to change this so that it returns the number of internships that we have online and creates that number
+            return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        //setting cell info, we want the it to say event + the number event it is
+        let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
+        cell.backgroundColor = UIColor.white
+        cell.internshipsLabel.text = "Internship \(indexPath.row+1):"
+        return cell
+    }
+
+    //height of cell
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 100
+    }
+    
+    //selected cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let destination = storyboard?.instantiateViewController(withIdentifier: "seventh_vc") as! SeventhViewController
+        navigationController?.pushViewController(destination, animated: true)
+
+    }
+    
+    
+    //creating the cells making them purple and rounded
+    class NewCell: UITableViewCell
+    {
+        let cellView: UIView =
+        {
+           let view = UIView()
+           view.backgroundColor = UIColor(red: 160/255, green:157/255, blue:224/255, alpha: 1.0)
+           view.layer.cornerRadius = 10
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+        }()
+           
+        let internshipsLabel: UILabel =
+        {
+           let label = UILabel()
+           label.text = "Internship 1:"
+           label.textColor = UIColor.white
+           label.font = UIFont.boldSystemFont(ofSize: 16)
+           label.translatesAutoresizingMaskIntoConstraints = false
+           return label
+        }()
+        
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            
+            arrangeView()
+        }
+        
+        required init?(coder aDecoder: NSCoder)
+        {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        //addign constraints
+        func arrangeView()
+        {
+            addSubview(cellView)
+            cellView.addSubview(internshipsLabel)
+            self.selectionStyle = .none
+            
+            NSLayoutConstraint.activate([
+                cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+                cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
+                cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
+                cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ])
+            
+            internshipsLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            internshipsLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            internshipsLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+            internshipsLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+            
+        }
+        
+    }
+    
+
 
 }

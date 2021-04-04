@@ -73,6 +73,13 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 100
     }
 
+    //selected cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let destination = storyboard?.instantiateViewController(withIdentifier: "eighth_vc") as! EighthViewController
+        navigationController?.pushViewController(destination, animated: true)
+
+    }
     
     //creating the cells making them purple and rounded
     class NewCell: UITableViewCell
