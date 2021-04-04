@@ -18,11 +18,17 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
     lazy var eventsController = storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
     lazy var profileController = storyboard?.instantiateViewController(withIdentifier: "sixth_vc") as! SixthViewController
     
+//    override func viewDidAppear(_ animated: Bool) {
+//
+//            self.navigationController?.setNavigationBarHidden(false, animated: false)
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // super.viewDidAppear(true)
         //setting the items we want to show in the menu
-        let menu = MenuController(with: ["Home", "Internships", "Events", "Profile"])
+        let menu = MenuController(with: ["Home", "Internships", "Events", "Profile", "Logout"])
         menu.delegate = self //delegating to itself to come into the funciton below *
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide=true
@@ -116,6 +122,19 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
                 self?.eventsController.view.isHidden = true
                 self?.profileController.view.isHidden = false
                 
+            }
+            else if named == "Logout"
+            {
+                let refreshAlert = UIAlertController(title: "Logout", message: "Are you sure you want to Logout?", preferredStyle: UIAlertController.Style.alert)
+
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self?.dismiss(animated: true)
+                }))
+
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                }))
+
+                self?.present(refreshAlert, animated: true, completion: nil)
             }
         })
         
