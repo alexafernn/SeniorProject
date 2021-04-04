@@ -26,12 +26,19 @@ class SixthViewController: UIViewController
     @IBAction func didTapUpdate()
     {
         
-        let refreshAlert = UIAlertController(title: "Update", message: "Are you sure you want to update your information?", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "Update", message: "Are you sure you want to update your information? This will require you to log back in.", preferredStyle: UIAlertController.Style.alert)
 
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
 //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
 //            self.present(vc,animated: true)
+//
+            self.dismiss(animated: true, completion: nil)
+            
+           // self.navigationController?.popViewController(animated: true)
+         
+           // self.performSegue(withIdentifier: "third_vc", sender: self)
 
+     
         }))
 
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in

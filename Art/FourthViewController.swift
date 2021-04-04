@@ -21,6 +21,7 @@ class FourthViewController: UIViewController/*, MenuControllerDelegate*/
     
     override func viewDidLoad()
     {
+        
         super.viewDidLoad()
 //        let menu = MenuController(with: ["Home", "Internships", "Events", "Profile"])
 //        menu.delegate = self //delegating to itself to come into the funciton below *

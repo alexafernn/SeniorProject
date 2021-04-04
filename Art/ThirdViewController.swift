@@ -92,7 +92,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         sideMenu?.dismiss(animated:true, completion:
         //based on whichever was chosen go to that screen
         { [weak self] in
-            
+           // self?.title = named
             if named == "Home"
             {
                 print("pressed home")
