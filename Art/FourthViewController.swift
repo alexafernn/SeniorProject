@@ -96,7 +96,8 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
            let label = UILabel()
            label.text = "Internship 1:"
            label.textColor = UIColor.white
-           label.font = UIFont.boldSystemFont(ofSize: 16)
+           label.font = UIFont.boldSystemFont(ofSize: 20)
+           label.font = UIFont(name: "Gotham Rounded", size: 20.0)
            label.translatesAutoresizingMaskIntoConstraints = false
            return label
         }()
