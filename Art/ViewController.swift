@@ -34,8 +34,8 @@ class ViewController: UIViewController
     
     @IBAction func didTapForgotPassword()
     {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ninth_vc") as! NinthViewController
-        present(vc,animated: true)
+        let vc1 = storyboard?.instantiateViewController(withIdentifier: "ninth_vc") as! NinthViewController
+        present(vc1,animated: true)
     }
     
     
@@ -70,23 +70,76 @@ class ViewController: UIViewController
             return
         }
         
+        DoLogin2(username!, password!)
         //gonna need some type of if statement here
-        DoLogin(username!, password!)
+        //DoLogin(username!, password!)
         
         //let vc3 = storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
         let vc3 = storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
         present(vc3, animated:true )
     }
     
+    
+    func DoLogin2(_ user:String, _ psw: String)
+    {
+        //let url = URL(string: "http://codeart.cs.loyola.edu/admin")!
+        //declare parameter as a dictionary which contains string as key and value combination. considering inputs are valid
+
+          let parameters = ["email": "admin@gmail.com", "password": "admin@OnlyPass!"]
+
+          //create the url with URL
+          let url = URL(string: "http://codeart.cs.loyola.edu/admin")! //change the url
+
+          //create the session object
+          let session = URLSession.shared
+
+          //now create the URLRequest object using the url object
+          var request = URLRequest(url: url)
+          request.httpMethod = "POST" //set http method as POST
+
+          do {
+              request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+          } catch let error {
+              print(error.localizedDescription)
+          }
+
+          request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+          request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+          //create dataTask using the session object to send data to the server
+          let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+              guard error == nil else {
+                  return
+              }
+
+              guard let data = data else {
+                  return
+              }
+
+              do {
+                  //create json object from data
+                  if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                      print(json)
+                      // handle json...
+                  }
+              } catch let error {
+                  print(error.localizedDescription)
+              }
+          })
+          task.resume()
+    }
+    
     func DoLogin(_ user:String, _ psw:String)
     {
-        let url = URL(string:"codeart.cs.loyola.edu")
+        print("inside do login ")
+        let url = URL(string:"http://codeart.cs.loyola.edu/admin")
         let session = URLSession.shared
         
         let request = NSMutableURLRequest(url:url!)
         request.httpMethod = "POST"
         
-        let paramToSend = "username=" + user + "&password=" + psw
+        let paramToSend = "email=" + user + "&password=" + psw
         
         request.httpBody = paramToSend.data(using: .utf8)
         
@@ -135,10 +188,10 @@ class ViewController: UIViewController
     {
         _username.isEnabled=true
         _password.isEnabled=true
-        
+
         //_login_button.setTitle("Login", for: .normal)
     }
-    
+
     func LoginDone()
     {
         _username.isEnabled=false
