@@ -32,6 +32,14 @@ class ViewController: UIViewController
         
     }
     
+    @IBAction func didTapForgotPassword()
+    {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ninth_vc") as! NinthViewController
+        present(vc,animated: true)
+    }
+    
+    
+    
     //working on buttons and two story boards
     @IBAction func didTapRegister()
     {
