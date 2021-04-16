@@ -105,6 +105,7 @@ class ViewController: UIViewController
     {
         let username = user
         let password = psw
+        //let header = ["Content-Type" : "application/json"]
         var goodAuth = false
         
         print("username is: ")
@@ -114,7 +115,8 @@ class ViewController: UIViewController
         
         if (username == "" || password == "")
         {
-            print("entered no user or password")
+            goodAuth = false
+            print("entered no user and/or password")
             let missingCredenital = UIAlertController(title: "Sign in Failed!", message: "Please enter Username and Password", preferredStyle: UIAlertController.Style.alert)
             missingCredenital.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                     self.dismiss(animated: true, completion: nil)
