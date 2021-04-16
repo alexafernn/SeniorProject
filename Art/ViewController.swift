@@ -7,6 +7,7 @@
 //
 import SideMenu
 import UIKit
+import Alamofire
 
 /*Main view controller*/
 class ViewController: UIViewController
@@ -85,7 +86,7 @@ class ViewController: UIViewController
 //
         
                 
-        DoLogin3(username!, password!)
+        DoLogin4(username!, password!)
 //        print("getting to this point")
 //        if(goodAuth == true)
 ////        let vc3 = storyboard?.instantiateViewController(withIdentifier: "third_vc") as! ThirdViewController
@@ -100,6 +101,61 @@ class ViewController: UIViewController
 //        }
     }
     
+    func DoLogin4(_ user:String, _ psw: String)
+    {
+        let username = user
+        let password = psw
+        var goodAuth = false
+        
+        print("username is: ")
+        print(username)
+        print("password is: ")
+        print(password)
+        
+        if (username == "" || password == "")
+        {
+            print("entered no user or password")
+            let missingCredenital = UIAlertController(title: "Sign in Failed!", message: "Please enter Username and Password", preferredStyle: UIAlertController.Style.alert)
+            missingCredenital.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                self.present(missingCredenital, animated: true, completion: nil)
+        }
+        else
+        {
+            print("in else , they entered both login credentials")
+            let p = ["email": username, "password": password]
+            let url = URL(string: "http://codeart.cs.loyola.edu/login")!
+            AF.request(url, method: .post, parameters: p, encoding: URLEncoding.default, headers:nil)
+                .validate(statusCode: 200..<300)
+                                .responseJSON { response in
+                                    
+                                    switch response.result {
+                                    case .success(let data):
+                                        print("isi: \(data)")
+                                        
+                                        goodAuth = true
+                                        
+                                    case .failure(let error):
+                                        print("error is ", error)
+                                        goodAuth = false
+                                        let wrongLogin = UIAlertController(title: "Sign in Failed!", message: "Please enter correct Username and Password", preferredStyle: UIAlertController.Style.alert)
+                                        wrongLogin.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                                self.dismiss(animated: true, completion: nil)
+                                            }))
+                                        self.present(wrongLogin, animated: true, completion: nil)
+
+                                 }
+                            }
+            
+            }
+        print("made it out of else")
+        if(goodAuth==true)
+        {
+            let vc3 = storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
+            present(vc3, animated:true )
+        }
+    }
     
     //trying out new approach:
     func DoLogin3(_ user:String, _ psw: String)
@@ -181,111 +237,6 @@ class ViewController: UIViewController
        
     }
  
-     
-//                var post:NSString = "username=\(username)&password=\(password)"
-//
-//                NSLog("PostData: %@",post);
-//
-//                var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonlogin2.php")!
-//
-//                var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
-//
-//                var postLength:NSString = String( postData.length )
-//
-//                var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
-//                request.HTTPMethod = "POST"
-//                request.HTTPBody = postData
-//                request.setValue(postLength, forHTTPHeaderField: "Content-Length")
-//                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//                request.setValue("application/json", forHTTPHeaderField: "Accept")
-//
-//
-//                var reponseError: NSError?
-//                var response: NSURLResponse?
-//
-//                var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
-//
-//                if ( urlData != nil ) {
-//                    let res = response as NSHTTPURLResponse!;
-//
-//                    NSLog("Response code: %ld", res.statusCode);
-//
-//                    if (res.statusCode >= 200 && res.statusCode < 300)
-//                    {
-//                        var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
-//
-//                        NSLog("Response ==> %@", responseData);
-//
-//                        var error: NSError?
-//
-//                        let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
-//
-//
-//                        let success:NSInteger = jsonData.valueForKey("success") as NSInteger
-//
-//                        //[jsonData[@"success"] integerValue];
-//
-//                        NSLog("Success: %ld", success);
-//
-//                        if(success == 1)
-//                        {
-//                            NSLog("Login SUCCESS");
-//
-//                            var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//                            prefs.setObject(username, forKey: "USERNAME")
-//                            prefs.setInteger(1, forKey: "ISLOGGEDIN")
-//                            prefs.synchronize()
-//
-//                            self.dismissViewControllerAnimated(true, completion: nil)
-//                        } else {
-//                            var error_msg:NSString
-//
-//                            if jsonData["error_message"] as? NSString != nil {
-//                                error_msg = jsonData["error_message"] as NSString
-//                            } else {
-//                                error_msg = "Unknown Error"
-//                            }
-//                            var alertView:UIAlertView = UIAlertView()
-//                            alertView.title = "Sign in Failed!"
-//                            alertView.message = error_msg
-//                            alertView.delegate = self
-//                            alertView.addButtonWithTitle("OK")
-//                            alertView.show()
-//
-//                        }
-//
-//                    } else {
-//                        var alertView:UIAlertView = UIAlertView()
-//                        alertView.title = "Sign in Failed!"
-//                        alertView.message = "Connection Failed"
-//                        alertView.delegate = self
-//                        alertView.addButtonWithTitle("OK")
-//                        alertView.show()
-//                    }
-//                } else {
-//                    var alertView:UIAlertView = UIAlertView()
-//                    alertView.title = "Sign in Failed!"
-//                    alertView.message = "Connection Failure"
-//                    if let error = reponseError {
-//                        alertView.message = (error.localizedDescription)
-//                    }
-//                    alertView.delegate = self
-//                    alertView.addButtonWithTitle("OK")
-//                    alertView.show()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     func DoLogin2(_ user:String, _ psw: String)
     {

@@ -5,5 +5,6 @@ target 'Art' do
   use_frameworks!
 
 pod 'SideMenu'
+pod 'Alamofire'
 
 end
