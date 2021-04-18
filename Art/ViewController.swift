@@ -125,38 +125,46 @@ class ViewController: UIViewController
         }
         else
         {
+            let h: HTTPHeaders = ["Content-Type": "application/json"]
             print("in else , they entered both login credentials")
             let p = ["email": username, "password": password]
-            let url = URL(string: "http://codeart.cs.loyola.edu/login")!
-            AF.request(url, method: .post, parameters: p, encoding: URLEncoding.default, headers:nil)
+            let url = URL(string: "http://codeart.cs.loyola.edu/account/login")!
+            AF.request(url, method: .post, parameters: p, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:h)
                 .validate(statusCode: 200..<300)
+                            /*.responseJson or .responseString*/
                                 .responseJSON { response in
-                                    
-                                    switch response.result {
-                                    case .success(let data):
-                                        print("isi: \(data)")
-                                        
-                                        goodAuth = true
-                                        
-                                    case .failure(let error):
-                                        print("error is ", error)
-                                        goodAuth = false
-                                        let wrongLogin = UIAlertController(title: "Sign in Failed!", message: "Please enter correct Username and Password", preferredStyle: UIAlertController.Style.alert)
-                                        wrongLogin.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                                                self.dismiss(animated: true, completion: nil)
-                                            }))
-                                        self.present(wrongLogin, animated: true, completion: nil)
+                                    debugPrint("PRINTING DEBUG: ", response)
+                                    print("response is " , response.response!.statusCode)
+                                    switch response.result
+                                    {
+                                        case .success(let data):
+                                            print(response)
+                                            print("IN SUCCESS")
+                                            print("isi: \(data)")
+                                            
+                                            goodAuth = true
+                                            let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
+                                            self.present(vc3, animated:true )
+                                            
+                                        case .failure(let error):
+                                            print("error is ", error)
+                                            goodAuth = false
+                                            let wrongLogin = UIAlertController(title: "Sign in Failed!", message: "Please enter correct Username and Password", preferredStyle: UIAlertController.Style.alert)
+                                            wrongLogin.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                                    self.dismiss(animated: true, completion: nil)
+                                                }))
+                                            self.present(wrongLogin, animated: true, completion: nil)
 
                                  }
                             }
             
             }
-        print("made it out of else")
-        if(goodAuth==true)
-        {
-            let vc3 = storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
-            present(vc3, animated:true )
-        }
+//        print("made it out of else")
+//        if(goodAuth==true)
+//        {
+//            let vc3 = storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
+//            present(vc3, animated:true )
+//        }
     }
     
     //trying out new approach:
@@ -184,7 +192,7 @@ class ViewController: UIViewController
         {
             print("in else , they entered login credentials")
             let parameters = ["email": username, "password": password]
-            let url = URL(string: "http://codeart.cs.loyola.edu/login")!
+            let url = URL(string: "http://codeart.cs.loyola.edu/account/login")!
             let session = URLSession.shared
             
             //now create the URLRequest object using the url object
