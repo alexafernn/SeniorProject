@@ -10,10 +10,23 @@ import UIKit
 /*Profile Page*/
 class SixthViewController: UIViewController
 {
+    @IBOutlet var _firstname: UITextField!
+    @IBOutlet var _lastname: UITextField!
+    @IBOutlet var _email: UITextField!
+    @IBOutlet var _password: UITextField!
+    @IBOutlet var _graduationyear: UITextField!
+    @IBOutlet var _birthdate: UITextField!
+    @IBOutlet var _gender: UITextField!
+    @IBOutlet var _learnaboutCodeArt: UITextField! 
+
+    
     //when view loads , load view from storyboard
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        print("id in profile is " , id)
+        
+        
     }
     
     //when the user clicks update , alert the user that their settings will be updated and follow through with the functionality

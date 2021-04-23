@@ -9,6 +9,8 @@ import SideMenu
 import UIKit
 import Alamofire
 
+var id = Int()
+
 /*Main view controller*/
 class ViewController: UIViewController 
 {
@@ -16,6 +18,8 @@ class ViewController: UIViewController
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
     @IBOutlet var _login_button: UIButton!
+    
+    
     
     //when screen loads do this
     override func viewDidLoad()
@@ -50,9 +54,6 @@ class ViewController: UIViewController
         let vc = storyboard?.instantiateViewController(withIdentifier: "second_vc") as! SecondViewController
         present(vc,animated: true)
     }
-
-    
-
     
     //when pressed on login button grab user name and password and go to do login function
     @IBAction func LoginButton(_ sender: Any)
@@ -111,17 +112,30 @@ class ViewController: UIViewController
                                     print("response is " , response.response!.statusCode)
                                     switch response.result
                                     {
-                                        case .success(let data):
+                                        case .success(let value):
                                             print(response)
                                             print("IN SUCCESS")
-                                            print("isi: \(data)")
-                                            let test = (data)
-                        
-                                           let stringtest = test as? String ?? ""
-                                            print("string test is " , stringtest)
-                                            print("test is ", test)
-                                            print("response result", response.result)
-                                    
+//                                            print("isi: \(data)")
+//                                            let test = (data)
+//                                            let stringtest = test as? String ?? ""
+//                                            print("string test is " , stringtest)
+//                                            print("test is ", test)
+//                                            print("response result", response.result)
+//
+                                            if let JSON = value as? [String: Any]
+                                            {
+                                               id = JSON["id"] as! Int
+                                               print(id)
+                                            }
+                                     
+                                        
+//                                            let ix = stringtest.startIndex
+//                                            let ix2 = stringtest.index(ix, offsetBy: 2)
+//
+//                                            stringtest.removeSubrange(ix...ix2)
+//
+//                                            print("string test after trim" , stringtest)
+                                            
                                            // response.result.value
 //                                            let userPost: UserPost = try! JSONDecoder().decode(UserPost.self, from: response.result)
                                            // print("the id is " , userPost.id)
