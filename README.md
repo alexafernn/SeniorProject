@@ -1,4 +1,5 @@
-## Code/Art Future LeadHERS Project
+# Code/Art Future LeadHERS Project
 
-## Names: Alexandra Fernandez & Isabelle Rivera
+# Names: Alexandra Fernandez & Isabelle Rivera
 
+## Overview of Project: 
