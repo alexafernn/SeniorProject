@@ -12,6 +12,7 @@ import Alamofire
 /*register view controller*/
 class SecondViewController: UIViewController
 {
+    //variables of register screen screen
     @IBOutlet var _firstname: UITextField!
     @IBOutlet var _lastname: UITextField!
     @IBOutlet var _email: UITextField!
@@ -21,26 +22,18 @@ class SecondViewController: UIViewController
     @IBOutlet var _gender: UITextField!
     @IBOutlet var _learnaboutca: UITextField!
 
-//    @IBOutlet var _firstname: UITextField!
-//    @IBOutlet var _lastname: UITextField!
-//    @IBOutlet var _email: UITextField!
-//    @IBOutlet var _password: UITextField!
-//    @IBOutlet var _graduationyear: UITextField!
-//    @IBOutlet var _birthdate: UITextField!
-//    @IBOutlet var _gender: UITextField!
-//    @IBOutlet var _learnedAboutCodeArt: UITextField!
-    
+    //when screen loads do this
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    //if tapped on cancel go back to main screen
     @IBAction func didCancel()
     {
         self.dismiss(animated: true, completion: nil);
     }
     
+    //if tapped on did sign up , call on database and create the account and go back to main screen 
     @IBAction func didSignUp()
     {
         let firstname = _firstname.text
@@ -78,10 +71,6 @@ class SecondViewController: UIViewController
                              }
                         }
         
-
-        //self.dismiss(animated: true, completion: nil);
-        //need to save the stuff to the database 
     }
     
-
 }

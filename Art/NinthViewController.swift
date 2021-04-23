@@ -7,22 +7,22 @@
 //
 
 import UIKit
-
+//forgot password view
 class NinthViewController: UIViewController
 {
-
+    //when view clicked on load the view from story board
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    //if user clicks on reset go back to main view
     @IBAction func didTapReset(sender: AnyObject)
     {
         self.dismiss(animated: true, completion: nil);
     }
     
+    //if user clicks cancel go back to main view 
     @IBAction func didTapCancel(sender: AnyObject)
     {
         self.dismiss(animated: true, completion: nil);

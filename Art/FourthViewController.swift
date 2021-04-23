@@ -23,7 +23,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return table_view
     }()
 
-    
+    //whne view loads , show the table
     override func viewDidLoad()
     {
         super.viewDidLoad()

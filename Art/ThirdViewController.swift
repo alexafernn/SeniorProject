@@ -11,22 +11,18 @@ import UIKit
 /*check out view controller*/
 class ThirdViewController: UIViewController, MenuControllerDelegate
 {
+    //for the side menu creation
     private var sideMenu: SideMenuNavigationController?
-    
-
+   
+    //variables of third screen
     lazy var internshipsController = storyboard?.instantiateViewController(withIdentifier: "fourth_vc") as! FourthViewController
     lazy var eventsController = storyboard?.instantiateViewController(withIdentifier: "fifth_vc") as! FifthViewController
     lazy var profileController = storyboard?.instantiateViewController(withIdentifier: "sixth_vc") as! SixthViewController
     
-//    override func viewDidAppear(_ animated: Bool) {
-//
-//            self.navigationController?.setNavigationBarHidden(false, animated: false)
-//
-//    }
-    
+    //when screen loads do this
     override func viewDidLoad() {
         super.viewDidLoad()
-       // super.viewDidAppear(true)
+
         //setting the items we want to show in the menu
         let menu = MenuController(with: ["Home", "Internships", "Events", "Profile", "Logout"])
         menu.delegate = self //delegating to itself to come into the funciton below *
@@ -66,6 +62,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         profileController.view.isHidden = true
     }
     
+    //when they click on internships go to internships view
     @IBAction func didTapInternships()
     {
         self.internshipsController.view.isHidden = false
@@ -73,7 +70,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         self.profileController.view.isHidden = true
     }
     
-    
+    //when they click on events go to events view
     @IBAction func didTapEvents()
     {
         self.internshipsController.view.isHidden = true
@@ -81,6 +78,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
         self.profileController.view.isHidden = true
     }
 
+    //when they tap on menu open the menu
     @IBAction func didTapMenuButton()
     {
         present(sideMenu!, animated: true)
@@ -141,7 +139,7 @@ class ThirdViewController: UIViewController, MenuControllerDelegate
     }
     
 }
-
+//menu functionality 
 protocol MenuControllerDelegate
 {
     func didSelectMenuItem(named: String)

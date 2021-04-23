@@ -10,16 +10,18 @@ import UIKit
 import Alamofire
 
 /*Main view controller*/
-class ViewController: UIViewController
+class ViewController: UIViewController 
 {
     //variables of front screen
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
     @IBOutlet var _login_button: UIButton!
     
+    //when screen loads do this
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         let preferences = UserDefaults.standard
         if(preferences.object(forKey: "session") != nil)
@@ -33,6 +35,7 @@ class ViewController: UIViewController
         
     }
     
+    //if pressed on forgot password go to that screen
     @IBAction func didTapForgotPassword()
     {
         let vc1 = storyboard?.instantiateViewController(withIdentifier: "ninth_vc") as! NinthViewController
@@ -41,7 +44,7 @@ class ViewController: UIViewController
     
     
     
-    //working on buttons and two story boards
+    //if pressed on register go to that screen
     @IBAction func didTapRegister()
     {
         let vc = storyboard?.instantiateViewController(withIdentifier: "second_vc") as! SecondViewController
@@ -49,8 +52,9 @@ class ViewController: UIViewController
     }
 
     
-    
 
+    
+    //when pressed on login button grab user name and password and go to do login function
     @IBAction func LoginButton(_ sender: Any)
     {
         let username = _username.text
@@ -60,8 +64,21 @@ class ViewController: UIViewController
         DoLogin4(username!, password!)
     }
     
+    //call to the database and verify the username/password combo exist and deal with the result
     func DoLogin4(_ user:String, _ psw: String)
     {
+//        struct UserPost: Decodable
+//        {
+////            enum Category: String, Decodable
+////            {
+////                case swift, combine, debugging, xcode
+////            }
+//
+//            let auth: String
+//            let id: Int
+//        }
+        
+        
         let username = user
         let password = psw
         
@@ -89,6 +106,7 @@ class ViewController: UIViewController
                 .validate(statusCode: 200..<300)
                             /*.responseJson or .responseString*/
                                 .responseJSON { response in
+                                    
                                     debugPrint("PRINTING DEBUG: ", response)
                                     print("response is " , response.response!.statusCode)
                                     switch response.result
@@ -97,6 +115,16 @@ class ViewController: UIViewController
                                             print(response)
                                             print("IN SUCCESS")
                                             print("isi: \(data)")
+                                            let test = (data)
+                        
+                                           let stringtest = test as? String ?? ""
+                                            print("string test is " , stringtest)
+                                            print("test is ", test)
+                                            print("response result", response.result)
+                                    
+                                           // response.result.value
+//                                            let userPost: UserPost = try! JSONDecoder().decode(UserPost.self, from: response.result)
+                                           // print("the id is " , userPost.id)
                                             let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
                                             self.present(vc3, animated:true )
                                             

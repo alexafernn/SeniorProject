@@ -23,12 +23,10 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }()
     
 
-    
+    //when the view loads should the view and arranze the tables
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        //want events label to appear
-        //_events.layer.zPosition = 1;
         arrangeTableView()
     }
     

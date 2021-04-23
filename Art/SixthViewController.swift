@@ -10,13 +10,13 @@ import UIKit
 /*Profile Page*/
 class SixthViewController: UIViewController
 {
-    
+    //when view loads , load view from storyboard
     override func viewDidLoad()
     {
         super.viewDidLoad()
     }
     
-    
+    //when the user clicks update , alert the user that their settings will be updated and follow through with the functionality
     @IBAction func didTapUpdate()
     {
         print("pressed update")
@@ -41,7 +41,6 @@ class SixthViewController: UIViewController
 
         self.present(refreshAlert, animated: true, completion: nil)
         
-  
     }
     
 }
