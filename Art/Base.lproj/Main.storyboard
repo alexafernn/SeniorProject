@@ -662,7 +662,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbQ-xx-iTm">
                                 <rect key="frame" x="20" y="540" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How did you learn about Code/Art:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MW-CY-oEC">
@@ -683,6 +683,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="1PC-I6-zFW"/>
+                    <connections>
+                        <outlet property="_birthdate" destination="bbQ-xx-iTm" id="vN4-1S-zdj"/>
+                        <outlet property="_email" destination="Yxl-It-Kqv" id="zwq-bQ-fxh"/>
+                        <outlet property="_firstname" destination="XvZ-5f-vgg" id="VHR-e2-WtR"/>
+                        <outlet property="_gender" destination="X0D-Dm-t9i" id="60q-2e-FjJ"/>
+                        <outlet property="_graduationyear" destination="xaC-55-LWJ" id="xas-Ta-CYe"/>
+                        <outlet property="_lastname" destination="5HH-Ak-v5X" id="jcq-Kh-A55"/>
+                        <outlet property="_learnaboutCodeArt" destination="fcI-vP-3yX" id="FFr-Ob-OaV"/>
+                        <outlet property="_password" destination="VPa-1O-gZm" id="UTc-fH-vmb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEZ-xX-1sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

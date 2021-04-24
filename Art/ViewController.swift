@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 var id = Int()
+var auth = String()
 
 /*Main view controller*/
 class ViewController: UIViewController 
@@ -18,8 +19,6 @@ class ViewController: UIViewController
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
     @IBOutlet var _login_button: UIButton!
-    
-    
     
     //when screen loads do this
     override func viewDidLoad()
@@ -46,8 +45,6 @@ class ViewController: UIViewController
         present(vc1,animated: true)
     }
     
-    
-    
     //if pressed on register go to that screen
     @IBAction func didTapRegister()
     {
@@ -61,25 +58,13 @@ class ViewController: UIViewController
         let username = _username.text
         let password = _password.text
 
-                
         DoLogin4(username!, password!)
     }
     
     //call to the database and verify the username/password combo exist and deal with the result
     func DoLogin4(_ user:String, _ psw: String)
     {
-//        struct UserPost: Decodable
-//        {
-////            enum Category: String, Decodable
-////            {
-////                case swift, combine, debugging, xcode
-////            }
-//
-//            let auth: String
-//            let id: Int
-//        }
-        
-        
+
         let username = user
         let password = psw
         
@@ -115,30 +100,15 @@ class ViewController: UIViewController
                                         case .success(let value):
                                             print(response)
                                             print("IN SUCCESS")
-//                                            print("isi: \(data)")
-//                                            let test = (data)
-//                                            let stringtest = test as? String ?? ""
-//                                            print("string test is " , stringtest)
-//                                            print("test is ", test)
-//                                            print("response result", response.result)
-//
+
                                             if let JSON = value as? [String: Any]
                                             {
                                                id = JSON["id"] as! Int
+                                               auth = JSON["auth"] as! String
                                                print(id)
+                                               print(auth)
                                             }
                                      
-                                        
-//                                            let ix = stringtest.startIndex
-//                                            let ix2 = stringtest.index(ix, offsetBy: 2)
-//
-//                                            stringtest.removeSubrange(ix...ix2)
-//
-//                                            print("string test after trim" , stringtest)
-                                            
-                                           // response.result.value
-//                                            let userPost: UserPost = try! JSONDecoder().decode(UserPost.self, from: response.result)
-                                           // print("the id is " , userPost.id)
                                             let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "test") as! UINavigationController
                                             self.present(vc3, animated:true )
                                             
@@ -149,20 +119,15 @@ class ViewController: UIViewController
                                                     self.dismiss(animated: true, completion: nil)
                                                 }))
                                             self.present(wrongLogin, animated: true, completion: nil)
-
                                  }
                             }
-            
             }
     }
-    
-   
     
     func LoginToDo()
     {
         _username.isEnabled=true
         _password.isEnabled=true
-
         //_login_button.setTitle("Login", for: .normal)
     }
 
@@ -170,11 +135,7 @@ class ViewController: UIViewController
     {
         _username.isEnabled=false
         _password.isEnabled=false
-        
       //  _login_button.setTitle("Logout", for: .normal)
     }
-    
-    
-
 }
 
