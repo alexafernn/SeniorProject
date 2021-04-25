@@ -11,6 +11,7 @@ import Alamofire
 
 var id = Int()
 var auth = String()
+var password2 = String()
 
 /*Main view controller*/
 class ViewController: UIViewController 
@@ -57,7 +58,10 @@ class ViewController: UIViewController
     {
         let username = _username.text
         let password = _password.text
+        
 
+        password2 = _password.text!
+        print("Password 2 =" + password2)
         DoLogin4(username!, password!)
     }
     

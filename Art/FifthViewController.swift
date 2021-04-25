@@ -28,6 +28,55 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         super.viewDidLoad()
         arrangeTableView()
+        
+        /*
+         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
+         { response in
+             
+             switch response.result
+             {
+                 case .success(let value):
+                 debugPrint("PRINTING DEBUG: ", response)
+                 print(response)
+                 
+                 if let JSON = value as? [String: Any]
+                 {
+                    first_name = JSON["first_name"] as! String
+                    last_name = JSON["last_name"] as! String
+                    email = JSON["email"] as! String
+                    graduation = JSON["graduation"] as! String
+                    age = JSON["age"] as! Int
+                    gender = JSON["gender"] as! String
+                    attributes = JSON["attributes"] as! String
+                    
+                    let ageString = String(age)
+                 
+                    print(first_name)
+                    print(last_name)
+                    print(email)
+                    print(graduation)
+                    print(ageString)
+                    print(gender)
+                    print(attributes)
+                     
+                     self._firstname.text = first_name
+                     self._lastname.text = last_name
+                     self._email.text = email
+                     self._graduationyear.text = graduation
+                     self._gender.text = gender
+                     self._learnaboutCodeArt.text = attributes
+                     self._birthdate.text = ageString
+                 }
+                 case .failure(let error):
+                     print("error is ", error)
+             }
+      
+         }
+     }
+     
+         
+         
+         */
     }
     
     //arranging the table view with constraints

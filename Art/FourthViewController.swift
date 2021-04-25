@@ -27,6 +27,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         arrangeTableView()
     }
     
