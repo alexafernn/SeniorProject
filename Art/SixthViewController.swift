@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-/*Profile Page*/
+
 
 var age = Int()
 var attributes = String()
@@ -19,7 +19,7 @@ var gender = String()
 var graduation = String()
 var last_name = String()
 
-
+/*Profile Page*/
 class SixthViewController: UIViewController
 {
     @IBOutlet var _firstname: UITextField!
