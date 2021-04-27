@@ -11,11 +11,20 @@ import UIKit
 import Alamofire
 
 var count = Int()
+var company = [String]()
+var role = [String]()
+
 /*internships view controller*/
 class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var id1 = Int()
     var arr = [Any]()
+
+    var company_name = String()
+    var role2 = String()
+    
+    var company_name2 = String()
+    var role3 = String()
     //creating table view object with requirements
     let tableview: UITableView =
     {
@@ -35,6 +44,8 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var authString = String()
         authString = String(auth)
         print("in view did load ")
+        
+        //trying to get amount of internships
         let url = URL(string: "http:codeart.cs.loyola.edu/internallinfo?id="+idString+"&auth"+authString)!
         
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
@@ -50,18 +61,29 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         print("IN SUCCESS of internship info")
                         if let JSON = value as? [String: Any]
                         {
-//                            var StringValue = String()
+                            //getting array from json
                             self.arr = JSON["data"] as! [Any]
-                            
-//                            StringValue = String(value)
                             print("arr = " , self.arr)
+                            
+                            //getting count of internships
                             count = self.arr.count
                             print("count variable =", count)
                             print("count = ", self.arr.count) //COUNT OF AMOUNT OF INTERNSHIPS
+                            
                             print("arr1 = " , self.arr[1])
                             var test = Int()
                             test = self.arr[1] as! Int + 1
                             print(test)
+                            
+                            
+                            company.append("place holder")
+                            company.append("Bloomberg")
+                            company.append("Goldman Sachs")
+                            company.append("place holder 2")
+                            role.append("place holder")
+                            role.append("Software Intern")
+                            role.append("Social Media Intern")
+                            role.append("place holder 3")
                             self.arrangeTableView()
                         
                         }
@@ -73,7 +95,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
        
         var test1 = String()
         test1 = "1"
-        let url1 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id"+test1)!
+        let url1 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id="+test1)!
         AF.request(url1, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
         { response in
             
@@ -85,7 +107,10 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("INSIDE INTERN GET")
                 if let JSON = value as? [String: Any]
                 {
-                   //first_name = JSON["first_name"] as! String
+                    self.company_name = JSON["company"] as! String
+                    print("company name = " + self.company_name)
+                    self.role2 = JSON["role"] as! String
+                    print("role = " + self.role2)
               
                     
                 }
@@ -94,6 +119,35 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
      
         }
+        
+//        var test2 = String()
+//        test2 = "2"
+//        let url2 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id="+test2)!
+//        AF.request(url2, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
+//        { response in
+//
+//            switch response.result
+//            {
+//                case .success(let value):
+//                debugPrint("PRINTING DEBUG: ", response)
+//                print(response)
+//                print("INSIDE INTERN GET")
+//                if let JSON = value as? [String: Any]
+//                {
+//                    self.company_name2 = JSON["company"] as! String
+//                    print("company name = " + self.company_name2)
+//                    self.role3 = JSON["role"] as! String
+//                    print("role = " + self.role3)
+//
+//
+//                }
+//                case .failure(let error):
+//                    print("error is ", error)
+//            }
+//
+//        }
+        
+        
         
         //arrangeTableView()
         
@@ -135,7 +189,9 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //setting cell info, we want the it to say event + the number event it is
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         cell.backgroundColor = UIColor.white
-        cell.internshipsLabel.text = "Internship \(indexPath.row+1):"
+        cell.internshipsLabel.text = "Company: " + company[indexPath.row+1] + "\nRole: " + role[indexPath.row+1]
+        
+       // cell.internshipsLabel.text = "Internship \(indexPath.row+1):"
         return cell
     }
 
@@ -169,10 +225,16 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let internshipsLabel: UILabel =
         {
            let label = UILabel()
-           label.text = "Internship 1:"
+//           label.text = "Internship 1:"
            label.textColor = UIColor.white
            label.font = UIFont.boldSystemFont(ofSize: 20)
            label.font = UIFont(name: "Gotham Rounded", size: 20.0)
+           label.numberOfLines = 0
+        
+           //label.lineBreakMode = .byWordWrapping
+         //  label.adjustsFontSizeToFitWidth = true
+         //  label.minimumScaleFactor = 0.8
+          // label.sizeToFit()
            label.translatesAutoresizingMaskIntoConstraints = false
            return label
         }()
