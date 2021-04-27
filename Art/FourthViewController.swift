@@ -8,11 +8,14 @@
 
 import SideMenu
 import UIKit
+import Alamofire
 
+var count = Int()
 /*internships view controller*/
 class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
+    var id1 = Int()
+    var arr = [Any]()
     //creating table view object with requirements
     let tableview: UITableView =
     {
@@ -27,9 +30,80 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        var idString = String()
+        idString = String(id)
+        var authString = String()
+        authString = String(auth)
+        print("in view did load ")
+        let url = URL(string: "http:codeart.cs.loyola.edu/internallinfo?id="+idString+"&auth"+authString)!
         
-        arrangeTableView()
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
+            
+            .responseJSON { response in
+                debugPrint("PRINTING DEBUG: ", response)
+                print("response is " , response.response!.statusCode)
+                switch response.result
+                {
+                    case .success(let value):
+                        
+                        print(response)
+                        print("IN SUCCESS of internship info")
+                        if let JSON = value as? [String: Any]
+                        {
+//                            var StringValue = String()
+                            self.arr = JSON["data"] as! [Any]
+                            
+//                            StringValue = String(value)
+                            print("arr = " , self.arr)
+                            count = self.arr.count
+                            print("count variable =", count)
+                            print("count = ", self.arr.count) //COUNT OF AMOUNT OF INTERNSHIPS
+                            print("arr1 = " , self.arr[1])
+                            var test = Int()
+                            test = self.arr[1] as! Int + 1
+                            print(test)
+                            self.arrangeTableView()
+                        
+                        }
+               
+                    case .failure(let error):
+                        print("error is ", error)
+             }
+        }
+       
+        var test1 = String()
+        test1 = "1"
+        let url1 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id"+test1)!
+        AF.request(url1, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
+        { response in
+            
+            switch response.result
+            {
+                case .success(let value):
+                debugPrint("PRINTING DEBUG: ", response)
+                print(response)
+                print("INSIDE INTERN GET")
+                if let JSON = value as? [String: Any]
+                {
+                   //first_name = JSON["first_name"] as! String
+              
+                    
+                }
+                case .failure(let error):
+                    print("error is ", error)
+            }
+     
+        }
+        
+        //arrangeTableView()
+        
     }
+        
+        
+        
+        
+       
+    
     
     //arranging the table view with constraints
     func arrangeTableView()
@@ -53,7 +127,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
             // want to change this so that it returns the number of internships that we have online and creates that number
-            return 10
+            return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
