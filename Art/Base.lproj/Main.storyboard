@@ -504,6 +504,14 @@
                         <viewLayoutGuide key="safeArea" id="RDG-BY-9OB"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="_companyname" destination="7al-DI-Jwz" id="Mbd-3e-C9t"/>
+                        <outlet property="_description" destination="xPc-2B-r8l" id="hKG-3O-HLX"/>
+                        <outlet property="_enddate" destination="H2Y-Fm-ee9" id="Gee-3E-xPq"/>
+                        <outlet property="_linktoapply" destination="4oI-Eg-KQB" id="JCp-8U-aCS"/>
+                        <outlet property="_role" destination="DG2-gV-uHZ" id="CW1-k3-a9g"/>
+                        <outlet property="_startdate" destination="sqS-zP-wZc" id="ZVe-9S-mja"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxs-Zt-Cvo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

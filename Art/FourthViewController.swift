@@ -17,6 +17,9 @@ var description_arr = [String]()
 var start_date_arr = [String]()
 var end_date_arr = [String]()
 var link_arr = [String]()
+var cell_clicked = Int()
+
+
 var table_count = 0
 var test21 = 0
 
@@ -47,16 +50,12 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     {
         super.viewDidLoad()
         
-        let myGroup = DispatchGroup()
-
-        
-        
         
         var idString = String()
         idString = String(id)
         var authString = String()
         authString = String(auth)
-        print("in view did load ")
+       // print("in view did load ")
 //        company_arr.append("place holder")
 //        role_arr.append("place holder ")
         //trying to get amount of internships
@@ -209,9 +208,9 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        print("inside table view trying dump")
-        dump(company_arr)
-        dump(role_arr)
+      //  print("inside table view trying dump")
+       // dump(company_arr)
+       // dump(role_arr)
         //setting cell info, we want the it to say event + the number event it is
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         print("inxedPath=" , indexPath)
@@ -233,6 +232,8 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //selected cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        cell_clicked = indexPath.row
+        print("cell clicked was : " , cell_clicked)
         let destination = storyboard?.instantiateViewController(withIdentifier: "seventh_vc") as! SeventhViewController
         navigationController?.pushViewController(destination, animated: true)
 
