@@ -11,8 +11,14 @@ import UIKit
 import Alamofire
 
 var count = Int()
-var company = [String]()
-var role = [String]()
+var company_arr = [String]()
+var role_arr = [String]()
+var description_arr = [String]()
+var start_date_arr = [String]()
+var end_date_arr = [String]()
+var link_arr = [String]()
+var table_count = 0
+var test21 = 0
 
 /*internships view controller*/
 class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
@@ -21,10 +27,11 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var arr = [Any]()
 
     var company_name = String()
-    var role2 = String()
+    var role = String()
     
     var company_name2 = String()
     var role3 = String()
+    
     //creating table view object with requirements
     let tableview: UITableView =
     {
@@ -39,12 +46,19 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        let myGroup = DispatchGroup()
+
+        
+        
+        
         var idString = String()
         idString = String(id)
         var authString = String()
         authString = String(auth)
         print("in view did load ")
-        
+//        company_arr.append("place holder")
+//        role_arr.append("place holder ")
         //trying to get amount of internships
         let url = URL(string: "http:codeart.cs.loyola.edu/internallinfo?id="+idString+"&auth"+authString)!
         
@@ -75,85 +89,92 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             test = self.arr[1] as! Int + 1
                             print(test)
                             
+                            var i = Int()
+                            i = -1
                             
-                            company.append("place holder")
-                            company.append("Bloomberg")
-                            company.append("Goldman Sachs")
-                            company.append("place holder 2")
-                            role.append("place holder")
-                            role.append("Software Intern")
-                            role.append("Social Media Intern")
-                            role.append("place holder 3")
-                            self.arrangeTableView()
-                        
+                            while i < count - 1
+                            {
+                                i = i + 1
+                                print("IN WHILE LOOOP i =" )
+                                print(i)
+                                var id_value = self.arr[i] as!Int
+                                print("id value is ")
+                                print(id_value )
+                                var id_value_to_string = String()
+                                id_value_to_string = String(id_value)
+                                let url1 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id="+id_value_to_string)!
+                                AF.request(url1, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
+                                { response in
+                                    
+                                    switch response.result
+                                    {
+                                        case .success(let value):
+                                        debugPrint("PRINTING DEBUG: ", response)
+                                        print(response)
+                                        print("INSIDE INTERN GET")
+                                        if let JSON = value as? [String: Any]
+                                        {
+                                            role_arr.append(JSON["role"]as! String)
+                                            company_arr.append(JSON["company"]as! String)
+                                            description_arr.append(JSON["details"]as! String)
+                                            start_date_arr.append(JSON["start_datetime"]as! String)
+                                            end_date_arr.append(JSON["end_datetime"]as! String)
+                                            link_arr.append(JSON["link"]as! String)
+                                            
+                                
+                                            print("dumping the company arr in the if")
+                                            dump(company_arr)
+                                            print("dumping the role arr in the if ")
+                                            dump(role_arr)
+                                            test21 = test21 + 1
+                                            print("in here test 21 = ", test21)
+                                            print("dumping link arr")
+                                            dump(link_arr)
+                                            
+                                            print("reaching arrange table view ")
+//                                            print("test 21 = ")
+//                                            print("count after test 21 = ")
+                                            if(test21 == count)
+                                            {
+                                                print("inside the test 21 if ")
+                                                self.arrangeTableView()
+                                            }
+                
+                                        }
+                                        case .failure(let error):
+                                            print("error is ", error)
+                                   }
+                               
+                            }
+                               // print("reaching arrange table view ")
+                               // self.arrangeTableView()
+                                
+                            
                         }
+                    
+//                            print("reaching arrange table view ")
+//                            self.arrangeTableView()
+                            
+                  
+                            
+                }
                
                     case .failure(let error):
                         print("error is ", error)
              }
-        }
-       
-        var test1 = String()
-        test1 = "1"
-        let url1 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id="+test1)!
-        AF.request(url1, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
-        { response in
-            
-            switch response.result
-            {
-                case .success(let value):
-                debugPrint("PRINTING DEBUG: ", response)
-                print(response)
-                print("INSIDE INTERN GET")
-                if let JSON = value as? [String: Any]
-                {
-                    self.company_name = JSON["company"] as! String
-                    print("company name = " + self.company_name)
-                    self.role2 = JSON["role"] as! String
-                    print("role = " + self.role2)
               
-                    
-                }
-                case .failure(let error):
-                    print("error is ", error)
-            }
-     
+          
+                
         }
-        
-//        var test2 = String()
-//        test2 = "2"
-//        let url2 = URL(string: "http://codeart.cs.loyola.edu/interninfo?id="+idString+"&auth"+authString+"&intern_id="+test2)!
-//        AF.request(url2, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
-//        { response in
-//
-//            switch response.result
-//            {
-//                case .success(let value):
-//                debugPrint("PRINTING DEBUG: ", response)
-//                print(response)
-//                print("INSIDE INTERN GET")
-//                if let JSON = value as? [String: Any]
-//                {
-//                    self.company_name2 = JSON["company"] as! String
-//                    print("company name = " + self.company_name2)
-//                    self.role3 = JSON["role"] as! String
-//                    print("role = " + self.role3)
-//
-//
-//                }
-//                case .failure(let error):
-//                    print("error is ", error)
-//            }
-//
-//        }
-        
-        
-        
-        //arrangeTableView()
-        
+ 
+
     }
-        
-        
+                
+                
+    
+    
+    
+          
         
         
        
@@ -181,16 +202,24 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
             // want to change this so that it returns the number of internships that we have online and creates that number
+            print("inside table view returning count of " , count )
             return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        
+        print("inside table view trying dump")
+        dump(company_arr)
+        dump(role_arr)
         //setting cell info, we want the it to say event + the number event it is
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
+        print("inxedPath=" , indexPath)
         cell.backgroundColor = UIColor.white
-        cell.internshipsLabel.text = "Company: " + company[indexPath.row+1] + "\nRole: " + role[indexPath.row+1]
-        
+        //cell.internshipsLabel.text = "Company: " + company_arr[indexPath.row+1] + "\nRole: " + role_arr[indexPath.row+1]
+        print("table count = " , table_count)
+            cell.internshipsLabel.text = "Company: " + company_arr[table_count] + "\nRole: " + role_arr[table_count]
+        table_count = table_count + 1
        // cell.internshipsLabel.text = "Internship \(indexPath.row+1):"
         return cell
     }
