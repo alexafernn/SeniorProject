@@ -8,10 +8,24 @@
 
 /*events view controller */
 import UIKit
+import Alamofire
+
+var event_count = Int()
+var event_name_arr = [String]()
+var event_organizers_arr = [String]()
+var event_location_arr = [String]()
+var event_date_arr = [String]()
+var event_description_arr = [String]()
+var event_cost_arr = [String]()
+var event_link_arr = [String]()
+var event_cell_clicked = Int()
+
+var event_table_count = 0
+var create_table_condition = 0
 
 class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
+    var eventArr = [Any]()
     //creating table view object with requirements
     let tableview: UITableView =
     {
@@ -27,56 +41,115 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        arrangeTableView()
+        var eventIdString = String()
+        eventIdString = String(id)
+        var eventAuthString = String()
+        eventAuthString = String(auth)
         
-        /*
-         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
-         { response in
-             
-             switch response.result
-             {
-                 case .success(let value):
-                 debugPrint("PRINTING DEBUG: ", response)
-                 print(response)
-                 
-                 if let JSON = value as? [String: Any]
-                 {
-                    first_name = JSON["first_name"] as! String
-                    last_name = JSON["last_name"] as! String
-                    email = JSON["email"] as! String
-                    graduation = JSON["graduation"] as! String
-                    age = JSON["age"] as! Int
-                    gender = JSON["gender"] as! String
-                    attributes = JSON["attributes"] as! String
+        let url = URL(string: "http:codeart.cs.loyola.edu/eventallinfo?id="+eventIdString+"&auth"+eventAuthString)!
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
+        .responseJSON
+        { response in
+            debugPrint("PRINTING DEBUG: ", response)
+            print("response is " , response.response!.statusCode)
+            switch response.result
+            {
+                case .success(let value):
                     
-                    let ageString = String(age)
-                 
-                    print(first_name)
-                    print(last_name)
-                    print(email)
-                    print(graduation)
-                    print(ageString)
-                    print(gender)
-                    print(attributes)
-                     
-                     self._firstname.text = first_name
-                     self._lastname.text = last_name
-                     self._email.text = email
-                     self._graduationyear.text = graduation
-                     self._gender.text = gender
-                     self._learnaboutCodeArt.text = attributes
-                     self._birthdate.text = ageString
-                 }
-                 case .failure(let error):
-                     print("error is ", error)
+                    print(response)
+                    print("IN SUCCESS of internship info")
+                    if let JSON = value as? [String: Any]
+                    {
+                         //getting array from json
+                         self.eventArr = JSON["data"] as! [Any]
+                         print("eventArr = " , self.eventArr)
+                         
+                         //getting count of events
+                         event_count = self.eventArr.count
+                         print("count variable =", event_count)
+                         
+                         var test = Int()
+                         test = self.eventArr[1] as! Int + 1
+                         print(test)
+                        
+                        var i = Int()
+                        i = -1
+                                              
+                        while i < event_count - 1
+                        {
+                              i = i + 1
+                              //print("IN WHILE LOOOP i =" )
+                              //print(i)
+                              var id_value = self.eventArr[i] as!Int
+                             // print("id value is ")
+                             // print(id_value )
+                              var id_value_to_string = String()
+                              id_value_to_string = String(id_value)
+                              let url1 = URL(string: "http://codeart.cs.loyola.edu/eventinfo?id="+eventIdString+"&auth"+eventAuthString+"&event_id="+id_value_to_string)!
+                              AF.request(url1, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
+                              { response in
+                                  
+                                  switch response.result
+                                  {
+                                      case .success(let value):
+                                      debugPrint("PRINTING DEBUG: ", response)
+                                      print(response)
+//                                      print("INSIDE INTERN GET")
+                                      if let JSON = value as? [String: Any]
+                                      {
+                                        
+                                            
+                                          event_name_arr.append(JSON["event_name"]as! String)
+                                          event_organizers_arr.append(JSON["organizers"]as! String)
+                                          event_location_arr.append(JSON["location"]as! String)
+                                          event_date_arr.append(JSON["start_datetime"]as! String)
+                                          event_description_arr.append(JSON["details"]as! String)
+                                          event_cost_arr.append(JSON["cost"]as! String)
+                                          event_link_arr.append(JSON["link"]as! String)
+                                          
+                              
+                                          create_table_condition = create_table_condition + 1
+                                          print("dumping the event arr in the if")
+                                          dump(event_name_arr)
+//                                          print("dumping the role arr in the if ")
+//                                          dump(role_arr)
+//                                          test21 = test21 + 1
+//                                          print("in here test 21 = ", test21)
+//                                          print("dumping link arr")
+//                                          dump(link_arr)
+                                          
+                                          print("reaching arrange table view ")
+    //                                            print("test 21 = ")
+    //                                            print("count after test 21 = ")
+                                          if(create_table_condition == event_count)
+                                          {
+//                                              print("inside the test 21 if ")
+                                              print("inside create table condition ")
+                                              self.arrangeTableView()
+                                          }
+              
+                                      }
+                                      case .failure(let error):
+                                          print("error is ", error)
+                                 }
+                             
+                          }
+                             // print("reaching arrange table view ")
+                             // self.arrangeTableView()
+                              
+                          
+                      }
+
+                        
+                        
+                        
+                    }
+                case .failure(let error):
+                    print("error is ", error)
              }
-      
          }
-     }
-     
-         
-         
-         */
+            //    arrangeTableView()
+       
     }
     
     //arranging the table view with constraints
@@ -102,7 +175,8 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
             // want to change this so that it returns the number of events that we have online and creates that number
-            return 10
+          //  return 10
+        return event_count
     }
     
     
@@ -111,7 +185,8 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //setting cell info, we want the it to say event + the number event it is
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         cell.backgroundColor = UIColor.white
-        cell.eventsLabel.text = "Event \(indexPath.row+1):"
+        cell.eventsLabel.text = "Event Name: " + event_name_arr[event_table_count] + "\nOrganizers: " + event_organizers_arr[event_table_count]
+        event_table_count = event_table_count + 1
         return cell
     }
 
@@ -123,6 +198,7 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //selected cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        event_cell_clicked = indexPath.row
         let destination = storyboard?.instantiateViewController(withIdentifier: "eighth_vc") as! EighthViewController
         navigationController?.pushViewController(destination, animated: true)
 
@@ -143,7 +219,8 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let eventsLabel: UILabel =
         {
            let label = UILabel()
-           label.text = "Event 1:"
+           //label.text = "Event 1:"
+            label.numberOfLines = 0 
            label.textColor = UIColor.white
            label.font = UIFont.boldSystemFont(ofSize: 20)
            label.font = UIFont(name: "Gotham Rounded", size: 20.0)

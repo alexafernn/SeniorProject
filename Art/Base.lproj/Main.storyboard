@@ -833,6 +833,15 @@
                         <viewLayoutGuide key="safeArea" id="nJd-Aw-4JL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="_cost" destination="9ty-X0-hE5" id="Yv8-Ul-IGP"/>
+                        <outlet property="_date" destination="Iiu-Ys-vcb" id="wD4-RQ-kTR"/>
+                        <outlet property="_description" destination="e6G-4n-TD5" id="zNK-kh-jYw"/>
+                        <outlet property="_eventlinktoapply" destination="dtX-Ie-Z4s" id="ln2-MZ-oNF"/>
+                        <outlet property="_eventname" destination="xfb-1T-cRK" id="Xxn-iX-HgY"/>
+                        <outlet property="_location" destination="IB2-nN-hq5" id="NDq-7j-TDp"/>
+                        <outlet property="_organizers" destination="JDH-6n-eU1" id="nAA-v8-4Ci"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTI-uM-irc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
