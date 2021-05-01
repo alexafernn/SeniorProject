@@ -97,12 +97,18 @@ class SixthViewController: UIViewController
     @IBAction func didTapUpdate()
     {
         print("pressed update")
-        let refreshAlert = UIAlertController(title: "Update", message: "Are you sure you want to update your information? This will require you to log back in.", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "Update", message: "Are you sure you want to update your information? ", preferredStyle: UIAlertController.Style.alert)
 
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            self.dismiss(animated: true, completion: nil)
+          //  self.dismiss(animated: true, completion: nil)
 //            
 //            let stringAge =
+            
+            let updated = UIAlertController(title: "Account Updated!", message: "Your account information has been saved.", preferredStyle: UIAlertController.Style.alert)
+            updated.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                //self.dismiss(animated: true, completion: nil)
+                }))
+            self.present(updated, animated: true, completion: nil)
             
             var idString2 = String()
             idString2 = String(id)
