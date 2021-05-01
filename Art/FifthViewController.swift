@@ -68,9 +68,9 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
                          event_count = self.eventArr.count
                          print("count variable =", event_count)
                          
-                         var test = Int()
-                         test = self.eventArr[1] as! Int + 1
-                         print(test)
+//                         var test = Int()
+//                         test = self.eventArr[1] as! Int + 1
+//                         print(test)
                         
                         var i = Int()
                         i = -1
@@ -185,7 +185,8 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //setting cell info, we want the it to say event + the number event it is
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         cell.backgroundColor = UIColor.white
-        cell.eventsLabel.text = "Event Name: " + event_name_arr[event_table_count] + "\nOrganizers: " + event_organizers_arr[event_table_count]
+        cell.eventsLabel.text = "Event Name: " + event_name_arr[indexPath.row] + "\nOrganizers: " + event_organizers_arr[indexPath.row]
+       // cell.eventsLabel.text = "Event Name: " + event_name_arr[event_table_count] + "\nOrganizers: " + event_organizers_arr[event_table_count]
         event_table_count = event_table_count + 1
         return cell
     }

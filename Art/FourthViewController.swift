@@ -215,9 +215,9 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         print("inxedPath=" , indexPath)
         cell.backgroundColor = UIColor.white
-        //cell.internshipsLabel.text = "Company: " + company_arr[indexPath.row+1] + "\nRole: " + role_arr[indexPath.row+1]
+        cell.internshipsLabel.text = "Company: " + company_arr[indexPath.row] + "\nRole: " + role_arr[indexPath.row]
         print("table count = " , table_count)
-            cell.internshipsLabel.text = "Company: " + company_arr[table_count] + "\nRole: " + role_arr[table_count]
+//        cell.internshipsLabel.text = "Company: " + company_arr[table_count] + "\nRole: " + role_arr[table_count]
         table_count = table_count + 1
        // cell.internshipsLabel.text = "Internship \(indexPath.row+1):"
         return cell
