@@ -259,12 +259,16 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
            label.textColor = UIColor.white
            label.font = UIFont.boldSystemFont(ofSize: 20)
            label.font = UIFont(name: "Gotham Rounded", size: 20.0)
+//           label.sizeToFit()
            label.numberOfLines = 0
+           label.lineBreakMode = .byTruncatingTail
+//           label.adjustsFontSizeToFitWidth = true
+//           label.minimumScaleFactor = 0.2
+         
+//           label.lineBreakMode = .byWordWrapping
+         
+
         
-           //label.lineBreakMode = .byWordWrapping
-         //  label.adjustsFontSizeToFitWidth = true
-         //  label.minimumScaleFactor = 0.8
-          // label.sizeToFit()
            label.translatesAutoresizingMaskIntoConstraints = false
            return label
         }()
@@ -295,7 +299,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ])
             
             internshipsLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            internshipsLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            internshipsLabel.widthAnchor.constraint(equalToConstant: 370).isActive = true
             internshipsLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
             internshipsLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
             

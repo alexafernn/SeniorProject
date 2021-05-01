@@ -185,7 +185,7 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //setting cell info, we want the it to say event + the number event it is
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         cell.backgroundColor = UIColor.white
-        cell.eventsLabel.text = "Event Name: " + event_name_arr[indexPath.row] + "\nOrganizers: " + event_organizers_arr[indexPath.row]
+        cell.eventsLabel.text = "Event: " + event_name_arr[indexPath.row] + "\nOrganizers: " + event_organizers_arr[indexPath.row]
        // cell.eventsLabel.text = "Event Name: " + event_name_arr[event_table_count] + "\nOrganizers: " + event_organizers_arr[event_table_count]
         event_table_count = event_table_count + 1
         return cell
@@ -220,12 +220,14 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let eventsLabel: UILabel =
         {
            let label = UILabel()
-           //label.text = "Event 1:"
-            label.numberOfLines = 0 
            label.textColor = UIColor.white
            label.font = UIFont.boldSystemFont(ofSize: 20)
            label.font = UIFont(name: "Gotham Rounded", size: 20.0)
+           label.sizeToFit()
+           label.numberOfLines = 0
+           label.adjustsFontSizeToFitWidth = true
            label.translatesAutoresizingMaskIntoConstraints = false
+           label.lineBreakMode = .byTruncatingTail
            return label
         }()
         
@@ -255,7 +257,7 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
             ])
             
             eventsLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            eventsLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            eventsLabel.widthAnchor.constraint(equalToConstant: 370).isActive = true
             eventsLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
             eventsLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
             
