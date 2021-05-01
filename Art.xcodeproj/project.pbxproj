@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C3AA9B4523E907F91C12828B /* Pods_Art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0325A2E4621DCFDF778C6E6E /* Pods_Art.framework */; };
+		D53EAC36263DD298007EEFA6 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53EAC35263DD298007EEFA6 /* iOSDropDown.framework */; };
 		D544C06526222FCC000E644A /* NinthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C06426222FCC000E644A /* NinthViewController.swift */; };
 		D5735741261A65F50040952D /* SeventhViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5735740261A65F50040952D /* SeventhViewController.swift */; };
 		D5735745261A6C000040952D /* EighthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5735744261A6C000040952D /* EighthViewController.swift */; };
@@ -28,6 +29,7 @@
 		0325A2E4621DCFDF778C6E6E /* Pods_Art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7BCD3A2A42D2D25BE763C1 /* Pods-Art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.release.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.release.xcconfig"; sourceTree = "<group>"; };
 		ABFF2A106A64B10A4C0350FA /* Pods-Art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.debug.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.debug.xcconfig"; sourceTree = "<group>"; };
+		D53EAC35263DD298007EEFA6 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D544C06426222FCC000E644A /* NinthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinthViewController.swift; sourceTree = "<group>"; };
 		D5735740261A65F50040952D /* SeventhViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeventhViewController.swift; sourceTree = "<group>"; };
 		D5735744261A6C000040952D /* EighthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EighthViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53EAC36263DD298007EEFA6 /* iOSDropDown.framework in Frameworks */,
 				C3AA9B4523E907F91C12828B /* Pods_Art.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +64,7 @@
 		050F28D3A8CCBE68B112736B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D53EAC35263DD298007EEFA6 /* iOSDropDown.framework */,
 				0325A2E4621DCFDF778C6E6E /* Pods_Art.framework */,
 			);
 			name = Frameworks;

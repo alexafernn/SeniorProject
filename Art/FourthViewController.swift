@@ -45,11 +45,25 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return table_view
     }()
 
+
     //whne view loads , show the table
     override func viewDidLoad()
     {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
+        print("inside view did load")
+        
+        company_arr.removeAll()
+        role_arr.removeAll()
+        description_arr.removeAll()
+        start_date_arr.removeAll()
+        end_date_arr.removeAll()
+        link_arr.removeAll()
+        count = 0
+        test21 = 0 
+       // tableview.reloadData()
+      
+
         
         var idString = String()
         idString = String(id)
@@ -66,6 +80,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
             .responseJSON { response in
                 debugPrint("PRINTING DEBUG: ", response)
                 print("response is " , response.response!.statusCode)
+                print("INSIDE THE REQUEST")
                 switch response.result
                 {
                     case .success(let value):
@@ -133,9 +148,13 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                             print("reaching arrange table view ")
 //                                            print("test 21 = ")
 //                                            print("count after test 21 = ")
+                                            print("print before test 21 is ")
+                                            print("test 21 ", test21)
+                                            print("count ",count)
                                             if(test21 == count)
                                             {
                                                 print("inside the test 21 if ")
+                                                print("inside arrangeTableView")
                                                 self.arrangeTableView()
                                             }
                 
@@ -154,6 +173,8 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                            print("reaching arrange table view ")
 //                            self.arrangeTableView()
                             
+                           print("getting herE!")
+//                         self.tableview.reloadData()
                   
                             
                 }
@@ -166,17 +187,9 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
         }
  
-
+        
     }
                 
-                
-    
-    
-    
-          
-        
-        
-       
     
     
     //arranging the table view with constraints
@@ -186,6 +199,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableview.dataSource = self
         //tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         tableview.register(NewCell.self, forCellReuseIdentifier: "cellID")
+        print("getting to add subview")
         view.addSubview(tableview)
         
         NSLayoutConstraint.activate(

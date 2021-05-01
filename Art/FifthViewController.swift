@@ -46,6 +46,17 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var eventAuthString = String()
         eventAuthString = String(auth)
         
+        create_table_condition = 0
+        event_count = 0
+        event_name_arr.removeAll()
+        event_organizers_arr.removeAll()
+        event_location_arr.removeAll()
+        event_date_arr.removeAll()
+        event_description_arr.removeAll()
+        event_cost_arr.removeAll()
+        event_link_arr.removeAll() 
+        
+        
         let url = URL(string: "http:codeart.cs.loyola.edu/eventallinfo?id="+eventIdString+"&auth"+eventAuthString)!
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
         .responseJSON

@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.4.2)
+  - iOSDropDown (0.3.4)
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Alamofire
+  - iOSDropDown
   - SideMenu
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - iOSDropDown
     - SideMenu
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 8985ca89c18fa70f34c5e33eaa2a3905b306fb4a
+PODFILE CHECKSUM: 0595cbce85fa69b667c284cb24bcabcff8ddf862
 
 COCOAPODS: 1.10.1

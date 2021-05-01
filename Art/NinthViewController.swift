@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import iOSDropDown
 //forgot password view
+
 class NinthViewController: UIViewController
 {
+    @IBOutlet weak var dropDown: DropDown!
     //when view clicked on load the view from story board
     override func viewDidLoad()
     {
         super.viewDidLoad()
+       
+        dropDown.optionArray = ["2021", "2022","2023","2024","2025","2026"]
+        dropDown.didSelect{(selectedText, index, id)  in
+            print("selected string: \(selectedText) \n index: \(index)")
+            
+        }
     }
     
     //if user clicks on reset go back to main view
