@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import DropDown
 
 /*register view controller*/
 class SecondViewController: UIViewController
@@ -17,15 +18,90 @@ class SecondViewController: UIViewController
     @IBOutlet var _lastname: UITextField!
     @IBOutlet var _email: UITextField!
     @IBOutlet var _password: UITextField!
-    @IBOutlet var _graduationyear: UITextField!
     @IBOutlet var _birthdate: UITextField!
-    @IBOutlet var _gender: UITextField!
-    @IBOutlet var _learnaboutca: UITextField!
+    @IBOutlet var _grad: UIButton!
+    @IBOutlet var _gender: UIButton!
+    @IBOutlet var _learnCA: UIButton!
 
+    let graduationYearDropDown = DropDown()
+    let genderDropDown = DropDown()
+    let learnCADropDown = DropDown()
+    
+   var graduationyear = String()
+   var gender = String()
+   var learnaboutca = String()
+    
+
+    
     //when screen loads do this
     override func viewDidLoad() {
         super.viewDidLoad()
+        _firstname.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _lastname.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _email.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _password.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _birthdate.layer.borderColor =  UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _grad.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _gender.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        _learnCA.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
+        
     }
+    
+    @IBAction func didYear(_ sender: UIButton)
+    {
+        graduationYearDropDown.dataSource = ["2021", "2022", "2023", "2024", "2025","2026"]
+        graduationYearDropDown.anchorView = sender //5
+        graduationYearDropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
+        graduationYearDropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        graduationYearDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        graduationYearDropDown.show() //7
+        
+        graduationYearDropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+          guard let _ = self else { return }
+          sender.setTitle(item, for: .normal)
+            print("item selected is" , item)//9
+            self?.graduationyear = item
+        }
+    }
+    
+    
+    @IBAction func didGender(_ sender: UIButton)
+    {
+        genderDropDown.dataSource = ["Female", "Male", "Other"]
+        genderDropDown.anchorView = sender //5
+        genderDropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
+        genderDropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        genderDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        genderDropDown.show() //7
+        
+        genderDropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+          guard let _ = self else { return }
+          sender.setTitle(item, for: .normal)
+            print("item selected is" , item)//9
+            self?.gender = item
+        }
+    }
+    
+    @IBAction func didLearnAbout(_ sender: UIButton)
+    {
+        learnCADropDown.dataSource = ["Referred by someone", "Referred by someone", "Word of mouth", "Social media", "Online search", "Another organization", "Other"]
+        learnCADropDown.anchorView = sender //5
+        learnCADropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
+        learnCADropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        learnCADropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        learnCADropDown.show() //7
+        
+        learnCADropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+          guard let _ = self else { return }
+          sender.setTitle(item, for: .normal)
+            print("item selected is" , item)//9
+            self?.learnaboutca = item
+        }
+        
+        
+    }
+    
+    
     
     //if tapped on cancel go back to main screen
     @IBAction func didCancel()
@@ -40,19 +116,16 @@ class SecondViewController: UIViewController
         let lastname = _lastname.text
         let email = _email.text
         let password = _password.text
-        let graduationyear = _graduationyear.text
         let birthdate = _birthdate.text
-        let gender = _gender.text
-        let learnaboutca = _learnaboutca.text
-        
-        let empty_string = ""
+
+
         //testing
         print(firstname, lastname, email, password, graduationyear, birthdate, gender,learnaboutca)
 
-        if((firstname ?? "").isEmpty || (lastname ?? "").isEmpty || (email ?? "").isEmpty || (password ?? "").isEmpty || (graduationyear ?? "").isEmpty || (birthdate ?? "").isEmpty || (gender ?? "").isEmpty || (learnaboutca ?? "").isEmpty)
+        if((firstname ?? "").isEmpty || (lastname ?? "").isEmpty || (email ?? "").isEmpty || (password ?? "").isEmpty || (graduationyear ).isEmpty || (birthdate ?? "").isEmpty || (gender ).isEmpty || (learnaboutca ).isEmpty)
         {
             //alert box
-            let missingFields = UIAlertController(title: "Missing Info!", message: "Please fill in all fields", preferredStyle: UIAlertController.Style.alert)
+            let missingFields = UIAlertController(title: "Missing Information!", message: "Please fill in all fields.", preferredStyle: UIAlertController.Style.alert)
             missingFields.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                 //self.dismiss(animated: true, completion: nil)
                 }))
@@ -88,3 +161,4 @@ class SecondViewController: UIViewController
     }
     
 }
+
