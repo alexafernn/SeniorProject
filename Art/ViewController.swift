@@ -37,6 +37,9 @@ class ViewController: UIViewController
             LoginToDo()
         }
         
+        _username.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _password.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        
     }
     
     //if pressed on forgot password go to that screen

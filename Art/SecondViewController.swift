@@ -45,6 +45,12 @@ class SecondViewController: UIViewController
         _gender.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _learnCA.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         
+        _firstname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _lastname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _email.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _password.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _birthdate.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        
     }
     
     @IBAction func didYear(_ sender: UIButton)
@@ -84,7 +90,7 @@ class SecondViewController: UIViewController
     
     @IBAction func didLearnAbout(_ sender: UIButton)
     {
-        learnCADropDown.dataSource = ["Referred by someone", "Referred by someone", "Word of mouth", "Social media", "Online search", "Another organization", "Other"]
+        learnCADropDown.dataSource = [ "Referred by someone", "Word of mouth", "Social media", "Online search", "Another organization", "Other"]
         learnCADropDown.anchorView = sender //5
         learnCADropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
         learnCADropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
@@ -133,6 +139,7 @@ class SecondViewController: UIViewController
         }
         else
         {
+                        
             let params = ["is_admin": false, "is_student":true, "first_name": firstname, "last_name": lastname, "email": email, "graduation": graduationyear, "birthday": birthdate, "gender": gender, "attributes": learnaboutca, "password": password] as [String : Any]
             
             let url = URL(string: "http://codeart.cs.loyola.edu/accountcreate")!
@@ -153,6 +160,11 @@ class SecondViewController: UIViewController
                                             
                                         case .failure(let error):
                                             print("error is ", error)
+                                            //alert box
+                                            let incorrectBirthday = UIAlertController(title: "Incorrect Format", message: "Please enter your birthday in the correct format. (MM/DD/YY)", preferredStyle: UIAlertController.Style.alert)
+                                            incorrectBirthday.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                                }))
+                                            self.present(incorrectBirthday, animated: true, completion: nil)
                                  }
                             }
         }
