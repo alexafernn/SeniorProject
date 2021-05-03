@@ -36,6 +36,14 @@ class EighthViewController: UIViewController
         _eventlinktoapply.text = event_link_arr[event_cell_clicked]
         eventUrlString = event_link_arr[event_cell_clicked]
          
+        
+        _eventname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _organizers.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _location.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _date.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _description.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _cost.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _eventlinktoapply.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
     }
     
     //when the user clicks get tickets take them to the third party website 

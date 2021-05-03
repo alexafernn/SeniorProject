@@ -11,10 +11,12 @@ import UIKit
 //forgot password view
 class NinthViewController: UIViewController
 {
-
+    @IBOutlet var _forgot: UITextField!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        _forgot.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
     }
     
     //if user clicks on reset go back to main view

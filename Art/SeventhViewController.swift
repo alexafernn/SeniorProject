@@ -33,6 +33,15 @@ class SeventhViewController: UIViewController
         _enddate.text = end_date_arr[cell_clicked]
         _linktoapply.text = link_arr[cell_clicked]
         urlString = link_arr[cell_clicked]
+        
+        
+        _companyname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _role.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _description.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _startdate.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _enddate.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        _linktoapply.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+    
     }
      
     //when the user taps apply go to the specific internship link 
