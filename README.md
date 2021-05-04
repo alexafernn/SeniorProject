@@ -12,10 +12,8 @@ The goal of the Code/Art LEADHers project is to create an iOS application for yo
 4. All buttons connecting to specific views 
 5. Connection to third party url if you click on get tickets or apply to internship 
 6. Code/Art fonts and color scheme used throughout the app 
-
-## Not Yet Implemented Features: 
-1. Database communication in the profile, internships, detailed internships, events, detailed events view. 
-2. Drop down instead of string input for sign up/profile 
+7. Database communication in the profile, internships, detailed internships, events, detailed events view. 
+8. Drop down instead of string input for sign up/profile 
 
 ## Dependencies: 
 1. Xcode - Version 12.4 (12D4e) - https://apps.apple.com/us/app/xcode/id497799835?mt=12
@@ -30,3 +28,5 @@ The goal of the Code/Art LEADHers project is to create an iOS application for yo
 
 ## Instructions for Running
 1. Press the play button on the upper left hand corner of Xcode. 
+
+## Extensive details on the full app/database and compilation/running + more can be found on our final document. 
