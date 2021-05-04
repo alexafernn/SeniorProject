@@ -8,7 +8,7 @@
 import SideMenu
 import UIKit
 
-/*check out view controller*/
+/*Check out internships or events view controller*/
 class ThirdViewController: UIViewController, MenuControllerDelegate
 {
     //for the side menu creation

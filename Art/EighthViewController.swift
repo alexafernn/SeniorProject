@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-/*Events Details Page*/
+/*specific event clicked Details view*/
 class EighthViewController: UIViewController
 {
     
@@ -27,6 +27,8 @@ class EighthViewController: UIViewController
     {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
+        
+        //populate the text with the index of the array of the cell that was clicked from table view
         _eventname.text = event_name_arr[event_cell_clicked]
         _organizers.text = event_organizers_arr[event_cell_clicked]
         _location.text = event_location_arr[event_cell_clicked]
@@ -36,7 +38,7 @@ class EighthViewController: UIViewController
         _eventlinktoapply.text = event_link_arr[event_cell_clicked]
         eventUrlString = event_link_arr[event_cell_clicked]
          
-        
+        //setting text color to Code/art's purple
         _eventname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _organizers.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _location.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
@@ -51,7 +53,6 @@ class EighthViewController: UIViewController
     {
         if let url = URL(string: eventUrlString)
          {
-
            let safariVC = SFSafariViewController(url: url)
            present(safariVC, animated: true, completion: nil)
          }

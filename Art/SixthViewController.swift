@@ -48,6 +48,7 @@ class SixthViewController: UIViewController
         print("id in profile is " , id)
         print("auth in profile is", auth)
         
+        //setting border color for all inputs
         _firstname.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _lastname.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _email.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
@@ -57,6 +58,7 @@ class SixthViewController: UIViewController
         _gender2.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _learnaboutCA.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         
+        //setting text color to code/arts purple
         _firstname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _lastname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _email.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
@@ -70,6 +72,8 @@ class SixthViewController: UIViewController
         let params = ["id": idString]
         let url = URL(string: "http://codeart.cs.loyola.edu/accountinfo?id="+idString+"&auth"+authString)!
         let h: HTTPHeaders = ["Content-Type": "application/json"]
+       
+        //json request to popualate all fields
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:nil).responseJSON
         { response in
             
@@ -117,7 +121,7 @@ class SixthViewController: UIViewController
     }
     
     
-    
+    //clicked on graduation year button
     @IBAction func didYear(_ sender: UIButton)
     {
         graduationYearDropDown.dataSource = ["2021", "2022", "2023", "2024", "2025","2026"]
@@ -136,6 +140,7 @@ class SixthViewController: UIViewController
     }
     
     
+    //clicked on gender button
     @IBAction func didGender(_ sender: UIButton)
     {
         genderDropDown.dataSource = ["Female", "Male", "Other"]
@@ -153,6 +158,7 @@ class SixthViewController: UIViewController
         }
     }
     
+    //clieck on did learn about codeart button
     @IBAction func didLearnAbout(_ sender: UIButton)
     {
         learnCADropDown.dataSource = ["Referred by someone", "Word of mouth", "Social media", "Online search", "Another organization", "Other"]
@@ -169,13 +175,6 @@ class SixthViewController: UIViewController
             self?.learnaboutca = item
         }
     }
-    
-    
-    
-    
-    
-    
-    
     
     //when the user clicks update , alert the user that their settings will be updated and follow through with the functionality
     @IBAction func didTapUpdate()
@@ -204,23 +203,18 @@ class SixthViewController: UIViewController
         print(new_lastname)
         
         
-        
-        
         if((new_firstname ).isEmpty || (new_lastname ).isEmpty || (new_email).isEmpty || (new_password).isEmpty || (new_graduation).isEmpty || (new_birthday).isEmpty || (new_gender).isEmpty || (new_attributes).isEmpty)
         {
             //alert box
             let missingFields = UIAlertController(title: "Missing Information!", message: "Please fill in all fields.", preferredStyle: UIAlertController.Style.alert)
             missingFields.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                //self.dismiss(animated: true, completion: nil)
                 }))
             self.present(missingFields, animated: true, completion: nil)
         }
         else
         {
 
-            //do are u sure you want to update ?
-        
-        
+        //verifying with user if they want to update
         
         let refreshAlert = UIAlertController(title: "Update", message: "Are you sure you want to update your information? ", preferredStyle: UIAlertController.Style.alert)
 
@@ -233,11 +227,9 @@ class SixthViewController: UIViewController
             self.present(updated, animated: true, completion: nil)
             
 
-            
+            //checking if password changed or not to see which parameter to include in json
             if new_password == password2
             {
-                //missing password
-                //"id": idString2,"is_admin": false, "is_student":true,
                 let params2 = ["first_name":new_firstname, "last_name":new_lastname, "email":new_email, "graduation":new_graduation, "birthday":new_birthday, "gender":new_gender, "attributes":new_attributes,"password":password2, "is_admin":false, "is_student":true] as [String : Any]
                 
                 let url2 = URL(string: "http://codeart.cs.loyola.edu/accountmodify?id="+idString2+"&auth"+authString2)!
@@ -286,9 +278,7 @@ class SixthViewController: UIViewController
 
 
             }
-            
-            
-//
+
         }))
 
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in

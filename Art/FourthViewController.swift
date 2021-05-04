@@ -19,11 +19,10 @@ var end_date_arr = [String]()
 var link_arr = [String]()
 var cell_clicked = Int()
 
-
 var table_count = 0
 var test21 = 0
 
-/*internships view controller*/
+/*internships view controller with tableview */
 class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var id1 = Int()
@@ -46,7 +45,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }()
 
 
-    //whne view loads , show the table
+    //when view loads , show the table
     override func viewDidLoad()
     {
         
@@ -60,8 +59,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         end_date_arr.removeAll()
         link_arr.removeAll()
         count = 0
-        test21 = 0 
-       // tableview.reloadData()
+        test21 = 0
       
 
         
@@ -69,12 +67,9 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         idString = String(id)
         var authString = String()
         authString = String(auth)
-       // print("in view did load ")
-//        company_arr.append("place holder")
-//        role_arr.append("place holder ")
-        //trying to get amount of internships
         let url = URL(string: "http:codeart.cs.loyola.edu/internallinfo?id="+idString+"&auth"+authString)!
         
+        //Do json request to populate table view and grab all internship details
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
             
             .responseJSON { response in
@@ -96,7 +91,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             //getting count of internships
                             count = self.arr.count
                             print("count variable =", count)
-                            print("count = ", self.arr.count) //COUNT OF AMOUNT OF INTERNSHIPS
+                            print("count = ", self.arr.count)
                             
                             print("arr1 = " , self.arr[1])
                             var test = Int()
@@ -146,8 +141,6 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                             dump(link_arr)
                                             
                                             print("reaching arrange table view ")
-//                                            print("test 21 = ")
-//                                            print("count after test 21 = ")
                                             print("print before test 21 is ")
                                             print("test 21 ", test21)
                                             print("count ",count)
@@ -164,17 +157,10 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                    }
                                
                             }
-                               // print("reaching arrange table view ")
-                               // self.arrangeTableView()
-                                
+
                             
                         }
                     
-//                            print("reaching arrange table view ")
-//                            self.arrangeTableView()
-                            
-                           print("getting herE!")
-//                         self.tableview.reloadData()
                   
                             
                 }
@@ -197,7 +183,6 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     {
         tableview.delegate = self
         tableview.dataSource = self
-        //tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         tableview.register(NewCell.self, forCellReuseIdentifier: "cellID")
         print("getting to add subview")
         view.addSubview(tableview)
@@ -211,10 +196,9 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ])
      }
     
-    //setting 10 number of cells in the table View
+    //setting number of cells to the count of how many internships are in the database
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-            // want to change this so that it returns the number of internships that we have online and creates that number
             print("inside table view returning count of " , count )
             return count
     }
@@ -222,18 +206,13 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-      //  print("inside table view trying dump")
-       // dump(company_arr)
-       // dump(role_arr)
-        //setting cell info, we want the it to say event + the number event it is
+
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         print("inxedPath=" , indexPath)
         cell.backgroundColor = UIColor.white
         cell.internshipsLabel.text = "Company: " + company_arr[indexPath.row] + "\nRole: " + role_arr[indexPath.row]
         print("table count = " , table_count)
-//        cell.internshipsLabel.text = "Company: " + company_arr[table_count] + "\nRole: " + role_arr[table_count]
         table_count = table_count + 1
-       // cell.internshipsLabel.text = "Internship \(indexPath.row+1):"
         return cell
     }
 
@@ -253,7 +232,6 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     }
     
-    
     //creating the cells making them purple and rounded
     class NewCell: UITableViewCell
     {
@@ -269,20 +247,11 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let internshipsLabel: UILabel =
         {
            let label = UILabel()
-//           label.text = "Internship 1:"
            label.textColor = UIColor.white
            label.font = UIFont.boldSystemFont(ofSize: 20)
            label.font = UIFont(name: "Gotham Rounded", size: 20.0)
-//           label.sizeToFit()
            label.numberOfLines = 0
            label.lineBreakMode = .byTruncatingTail
-//           label.adjustsFontSizeToFitWidth = true
-//           label.minimumScaleFactor = 0.2
-         
-//           label.lineBreakMode = .byWordWrapping
-         
-
-        
            label.translatesAutoresizingMaskIntoConstraints = false
            return label
         }()
@@ -298,7 +267,7 @@ class FourthViewController: UIViewController, UITableViewDelegate, UITableViewDa
             fatalError("init(coder:) has not been implemented")
         }
         
-        //addign constraints
+        //adding constraints
         func arrangeView()
         {
             addSubview(cellView)

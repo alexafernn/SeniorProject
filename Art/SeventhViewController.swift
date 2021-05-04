@@ -8,7 +8,7 @@
 import SafariServices
 import UIKit
 
-/*internship details*/
+/*specific internship clicked on details view*/
 class SeventhViewController: UIViewController
 {
 
@@ -26,6 +26,7 @@ class SeventhViewController: UIViewController
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         
+        //populate the text with the index of the array of the cell that was clicked from table view
         _companyname.text = company_arr[cell_clicked]
         _role.text = role_arr[cell_clicked]
         _description.text = description_arr[cell_clicked]
@@ -34,7 +35,7 @@ class SeventhViewController: UIViewController
         _linktoapply.text = link_arr[cell_clicked]
         urlString = link_arr[cell_clicked]
         
-        
+        //setting text color to Code/art's purple
         _companyname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _role.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _description.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
@@ -43,7 +44,7 @@ class SeventhViewController: UIViewController
         _linktoapply.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
     
     }
-     
+    
     //when the user taps apply go to the specific internship link 
     @IBAction func didTapApply(sender: AnyObject)
     {

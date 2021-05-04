@@ -6,7 +6,7 @@
 //  Copyright © 2021 Alexa. All rights reserved.
 //
 
-/*events view controller */
+
 import UIKit
 import Alamofire
 
@@ -23,9 +23,11 @@ var event_cell_clicked = Int()
 var event_table_count = 0
 var create_table_condition = 0
 
+/*events view controller with table view */
 class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var eventArr = [Any]()
+    
     //creating table view object with requirements
     let tableview: UITableView =
     {
@@ -36,8 +38,7 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return table_view
     }()
     
-
-    //when the view loads should the view and arranze the tables
+    //when the view loads should the view and arrange the tables
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         event_cost_arr.removeAll()
         event_link_arr.removeAll() 
         
-        
+        //do json request to populate the table view with the events from the database
         let url = URL(string: "http:codeart.cs.loyola.edu/eventallinfo?id="+eventIdString+"&auth"+eventAuthString)!
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
         .responseJSON
@@ -78,10 +79,6 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
                          //getting count of events
                          event_count = self.eventArr.count
                          print("count variable =", event_count)
-                         
-//                         var test = Int()
-//                         test = self.eventArr[1] as! Int + 1
-//                         print(test)
                         
                         var i = Int()
                         i = -1
@@ -89,11 +86,7 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         while i < event_count - 1
                         {
                               i = i + 1
-                              //print("IN WHILE LOOOP i =" )
-                              //print(i)
                               var id_value = self.eventArr[i] as!Int
-                             // print("id value is ")
-                             // print(id_value )
                               var id_value_to_string = String()
                               id_value_to_string = String(id_value)
                               let url1 = URL(string: "http://codeart.cs.loyola.edu/eventinfo?id="+eventIdString+"&auth"+eventAuthString+"&event_id="+id_value_to_string)!
@@ -105,7 +98,6 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                       case .success(let value):
                                       debugPrint("PRINTING DEBUG: ", response)
                                       print(response)
-//                                      print("INSIDE INTERN GET")
                                       if let JSON = value as? [String: Any]
                                       {
                                         
@@ -122,19 +114,11 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                           create_table_condition = create_table_condition + 1
                                           print("dumping the event arr in the if")
                                           dump(event_name_arr)
-//                                          print("dumping the role arr in the if ")
-//                                          dump(role_arr)
-//                                          test21 = test21 + 1
-//                                          print("in here test 21 = ", test21)
-//                                          print("dumping link arr")
-//                                          dump(link_arr)
                                           
                                           print("reaching arrange table view ")
-    //                                            print("test 21 = ")
-    //                                            print("count after test 21 = ")
+
                                           if(create_table_condition == event_count)
                                           {
-//                                              print("inside the test 21 if ")
                                               print("inside create table condition ")
                                               self.arrangeTableView()
                                           }
@@ -145,22 +129,14 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                  }
                              
                           }
-                             // print("reaching arrange table view ")
-                             // self.arrangeTableView()
-                              
                           
                       }
-
-                        
-                        
                         
                     }
                 case .failure(let error):
                     print("error is ", error)
              }
          }
-            //    arrangeTableView()
-       
     }
     
     //arranging the table view with constraints
@@ -182,11 +158,9 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    //setting 10 number of cells in the table View
+    //setting number of cells in the table View to amount of events in database
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-            // want to change this so that it returns the number of events that we have online and creates that number
-          //  return 10
         return event_count
     }
     
@@ -197,7 +171,6 @@ class FifthViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! NewCell
         cell.backgroundColor = UIColor.white
         cell.eventsLabel.text = "Event: " + event_name_arr[indexPath.row] + "\nOrganizers: " + event_organizers_arr[indexPath.row]
-       // cell.eventsLabel.text = "Event Name: " + event_name_arr[event_table_count] + "\nOrganizers: " + event_organizers_arr[event_table_count]
         event_table_count = event_table_count + 1
         return cell
     }

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import DropDown
 
-/*register view controller*/
+/*Register fo an Account view controller*/
 class SecondViewController: UIViewController
 {
     //variables of register screen screen
@@ -23,19 +23,22 @@ class SecondViewController: UIViewController
     @IBOutlet var _gender: UIButton!
     @IBOutlet var _learnCA: UIButton!
 
+    //Drop downs for button
     let graduationYearDropDown = DropDown()
     let genderDropDown = DropDown()
     let learnCADropDown = DropDown()
     
-   var graduationyear = String()
-   var gender = String()
-   var learnaboutca = String()
-    
-
+    //to store string from buttons 
+    var graduationyear = String()
+    var gender = String()
+    var learnaboutca = String()
     
     //when screen loads do this
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
+        //adding boreder color for all inputs
         _firstname.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _lastname.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _email.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
@@ -45,24 +48,25 @@ class SecondViewController: UIViewController
         _gender.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         _learnCA.layer.borderColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0).cgColor
         
+        //adding text color for all inputs
         _firstname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _lastname.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _email.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _password.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _birthdate.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
-        
     }
     
+    //Creating drop down for graduation year button
     @IBAction func didYear(_ sender: UIButton)
     {
         graduationYearDropDown.dataSource = ["2021", "2022", "2023", "2024", "2025","2026"]
         graduationYearDropDown.anchorView = sender //5
         graduationYearDropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
         graduationYearDropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
-        graduationYearDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        graduationYearDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
         graduationYearDropDown.show() //7
         
-        graduationYearDropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+        graduationYearDropDown.selectionAction = { [weak self] (index: Int, item: String) in
           guard let _ = self else { return }
           sender.setTitle(item, for: .normal)
             print("item selected is" , item)//9
@@ -70,17 +74,17 @@ class SecondViewController: UIViewController
         }
     }
     
-    
+    //Creating drop down for gender button
     @IBAction func didGender(_ sender: UIButton)
     {
         genderDropDown.dataSource = ["Female", "Male", "Other"]
         genderDropDown.anchorView = sender //5
         genderDropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
         genderDropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
-        genderDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        genderDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
         genderDropDown.show() //7
         
-        genderDropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+        genderDropDown.selectionAction = { [weak self] (index: Int, item: String) in
           guard let _ = self else { return }
           sender.setTitle(item, for: .normal)
             print("item selected is" , item)//9
@@ -88,16 +92,17 @@ class SecondViewController: UIViewController
         }
     }
     
+    //Creating drop down for how user learned about Code/Art button
     @IBAction func didLearnAbout(_ sender: UIButton)
     {
         learnCADropDown.dataSource = [ "Referred by someone", "Word of mouth", "Social media", "Online search", "Another organization", "Other"]
         learnCADropDown.anchorView = sender //5
         learnCADropDown.textFont = UIFont(name: "Gotham Rounded", size: 20.0)!
         learnCADropDown.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
-        learnCADropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        learnCADropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
         learnCADropDown.show() //7
         
-        learnCADropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+        learnCADropDown.selectionAction = { [weak self] (index: Int, item: String) in
           guard let _ = self else { return }
           sender.setTitle(item, for: .normal)
             print("item selected is" , item)//9
@@ -106,8 +111,6 @@ class SecondViewController: UIViewController
         
         
     }
-    
-    
     
     //if tapped on cancel go back to main screen
     @IBAction func didCancel()
@@ -124,21 +127,21 @@ class SecondViewController: UIViewController
         let password = _password.text
         let birthdate = _birthdate.text
 
-
         //testing
         print(firstname, lastname, email, password, graduationyear, birthdate, gender,learnaboutca)
 
+        //if parameter missing alert the user and dont let them go on
         if((firstname ?? "").isEmpty || (lastname ?? "").isEmpty || (email ?? "").isEmpty || (password ?? "").isEmpty || (graduationyear ).isEmpty || (birthdate ?? "").isEmpty || (gender ).isEmpty || (learnaboutca ).isEmpty)
         {
             //alert box
             let missingFields = UIAlertController(title: "Missing Information!", message: "Please fill in all fields.", preferredStyle: UIAlertController.Style.alert)
             missingFields.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                //self.dismiss(animated: true, completion: nil)
                 }))
             self.present(missingFields, animated: true, completion: nil)
         }
         else
         {
+            //call on the database with json to create the account
                         
             let params = ["is_admin": false, "is_student":true, "first_name": firstname, "last_name": lastname, "email": email, "graduation": graduationyear, "birthday": birthdate, "gender": gender, "attributes": learnaboutca, "password": password] as [String : Any]
             
@@ -147,7 +150,6 @@ class SecondViewController: UIViewController
             
             AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers:h)
                 .validate(statusCode: 200..<300)
-                            /*.responseJson or .responseString*/
                                 .responseJSON { response in
                                     debugPrint("PRINTING DEBUG: ", response)
                                     print("response is " , response.response!.statusCode)
@@ -160,7 +162,7 @@ class SecondViewController: UIViewController
                                             
                                         case .failure(let error):
                                             print("error is ", error)
-                                            //alert box
+                                            //alert box if user entered incorrect birthday format 
                                             let incorrectBirthday = UIAlertController(title: "Incorrect Format", message: "Please enter your birthday in the correct format. (MM/DD/YY)", preferredStyle: UIAlertController.Style.alert)
                                             incorrectBirthday.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                                                 }))

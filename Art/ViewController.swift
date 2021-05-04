@@ -13,7 +13,7 @@ var id = Int()
 var auth = String()
 var password2 = String()
 
-/*Main view controller*/
+/*Main view controller for Login Screen */
 class ViewController: UIViewController 
 {
     //variables of front screen
@@ -26,17 +26,7 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        let preferences = UserDefaults.standard
-        if(preferences.object(forKey: "session") != nil)
-        {
-            LoginDone()
-        }
-        else
-        {
-            LoginToDo()
-        }
-        
+        //setting color of font to Code/Art's Dark Purple
         _username.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         _password.textColor = UIColor(red: 47/255, green:48/255, blue:133/255, alpha: 1.0)
         
@@ -80,6 +70,7 @@ class ViewController: UIViewController
         print("password is: ")
         print(password)
         
+        //if username or password missing alert sign in failed
         if (username == "" || password == "")
         {
             print("entered no user and/or password")
@@ -91,15 +82,14 @@ class ViewController: UIViewController
         }
         else
         {
+            //do json call to database
             let h: HTTPHeaders = ["Content-Type": "application/json"]
             print("in else , they entered both login credentials")
             let p = ["email": username, "password": password]
             let url = URL(string: "http://codeart.cs.loyola.edu/account/login")!
-            AF.request(url, method: .post, parameters: p, encoding: JSONEncoding.default/*URLEncoding.default*/, headers:h)
+            AF.request(url, method: .post, parameters: p, encoding: JSONEncoding.default, headers:h)
                 .validate(statusCode: 200..<300)
-                            /*.responseJson or .responseString*/
                                 .responseJSON { response in
-                                    
                                     debugPrint("PRINTING DEBUG: ", response)
                                     print("response is " , response.response!.statusCode)
                                     switch response.result
@@ -129,20 +119,6 @@ class ViewController: UIViewController
                                  }
                             }
             }
-    }
-    
-    func LoginToDo()
-    {
-        _username.isEnabled=true
-        _password.isEnabled=true
-        //_login_button.setTitle("Login", for: .normal)
-    }
-
-    func LoginDone()
-    {
-        _username.isEnabled=false
-        _password.isEnabled=false
-      //  _login_button.setTitle("Logout", for: .normal)
     }
 }
 
