@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C3AA9B4523E907F91C12828B /* Pods_Art.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0325A2E4621DCFDF778C6E6E /* Pods_Art.framework */; };
 		D53EAC36263DD298007EEFA6 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53EAC35263DD298007EEFA6 /* iOSDropDown.framework */; };
+		D53EAC452640EDDF007EEFA6 /* ArtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53EAC442640EDDF007EEFA6 /* ArtTests.swift */; };
 		D544C06526222FCC000E644A /* NinthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C06426222FCC000E644A /* NinthViewController.swift */; };
 		D5735741261A65F50040952D /* SeventhViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5735740261A65F50040952D /* SeventhViewController.swift */; };
 		D5735745261A6C000040952D /* EighthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5735744261A6C000040952D /* EighthViewController.swift */; };
@@ -25,11 +26,24 @@
 		FAF8ACF625DD216C0073E6CA /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAF8ACF525DD216C0073E6CA /* Gotham Rounded Bold.otf */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D53EAC472640EDDF007EEFA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB6077225D42FEB0031634F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB6077925D42FEB0031634F;
+			remoteInfo = Art;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0325A2E4621DCFDF778C6E6E /* Pods_Art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7BCD3A2A42D2D25BE763C1 /* Pods-Art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.release.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.release.xcconfig"; sourceTree = "<group>"; };
 		ABFF2A106A64B10A4C0350FA /* Pods-Art.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.debug.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.debug.xcconfig"; sourceTree = "<group>"; };
 		D53EAC35263DD298007EEFA6 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53EAC422640EDDE007EEFA6 /* ArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53EAC442640EDDF007EEFA6 /* ArtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtTests.swift; sourceTree = "<group>"; };
+		D53EAC462640EDDF007EEFA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D544C06426222FCC000E644A /* NinthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinthViewController.swift; sourceTree = "<group>"; };
 		D5735740261A65F50040952D /* SeventhViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeventhViewController.swift; sourceTree = "<group>"; };
 		D5735744261A6C000040952D /* EighthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EighthViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D53EAC3F2640EDDE007EEFA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB6077725D42FEB0031634F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,11 +100,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D53EAC432640EDDF007EEFA6 /* ArtTests */ = {
+			isa = PBXGroup;
+			children = (
+				D53EAC442640EDDF007EEFA6 /* ArtTests.swift */,
+				D53EAC462640EDDF007EEFA6 /* Info.plist */,
+			);
+			path = ArtTests;
+			sourceTree = "<group>";
+		};
 		FAB6077125D42FEB0031634F = {
 			isa = PBXGroup;
 			children = (
 				FAF8ACF425DD21220073E6CA /* Fonts */,
 				FAB6077C25D42FEB0031634F /* Art */,
+				D53EAC432640EDDF007EEFA6 /* ArtTests */,
 				FAB6077B25D42FEB0031634F /* Products */,
 				7EC4F0A30FE95CFBCF2ABE1E /* Pods */,
 				050F28D3A8CCBE68B112736B /* Frameworks */,
@@ -94,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB6077A25D42FEB0031634F /* Art.app */,
+				D53EAC422640EDDE007EEFA6 /* ArtTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +162,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D53EAC412640EDDE007EEFA6 /* ArtTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D53EAC4B2640EDDF007EEFA6 /* Build configuration list for PBXNativeTarget "ArtTests" */;
+			buildPhases = (
+				D53EAC3E2640EDDE007EEFA6 /* Sources */,
+				D53EAC3F2640EDDE007EEFA6 /* Frameworks */,
+				D53EAC402640EDDE007EEFA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D53EAC482640EDDF007EEFA6 /* PBXTargetDependency */,
+			);
+			name = ArtTests;
+			productName = ArtTests;
+			productReference = D53EAC422640EDDE007EEFA6 /* ArtTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FAB6077925D42FEB0031634F /* Art */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAB6078C25D42FED0031634F /* Build configuration list for PBXNativeTarget "Art" */;
@@ -155,10 +205,14 @@
 		FAB6077225D42FEB0031634F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Alexa;
 				TargetAttributes = {
+					D53EAC412640EDDE007EEFA6 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = FAB6077925D42FEB0031634F;
+					};
 					FAB6077925D42FEB0031634F = {
 						CreatedOnToolsVersion = 10.2;
 						LastSwiftMigration = 1240;
@@ -179,11 +233,19 @@
 			projectRoot = "";
 			targets = (
 				FAB6077925D42FEB0031634F /* Art */,
+				D53EAC412640EDDE007EEFA6 /* ArtTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D53EAC402640EDDE007EEFA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB6077825D42FEB0031634F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +302,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D53EAC3E2640EDDE007EEFA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53EAC452640EDDF007EEFA6 /* ArtTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB6077625D42FEB0031634F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +328,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D53EAC482640EDDF007EEFA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB6077925D42FEB0031634F /* Art */;
+			targetProxy = D53EAC472640EDDF007EEFA6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FAB6078125D42FEB0031634F /* Main.storyboard */ = {
@@ -279,6 +357,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D53EAC492640EDDF007EEFA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ArtTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = AlexaFernandez.ArtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Art.app/Art";
+			};
+			name = Debug;
+		};
+		D53EAC4A2640EDDF007EEFA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ArtTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = AlexaFernandez.ArtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Art.app/Art";
+			};
+			name = Release;
+		};
 		FAB6078A25D42FED0031634F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -439,6 +559,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D53EAC4B2640EDDF007EEFA6 /* Build configuration list for PBXNativeTarget "ArtTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53EAC492640EDDF007EEFA6 /* Debug */,
+				D53EAC4A2640EDDF007EEFA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAB6077525D42FEB0031634F /* Build configuration list for PBXProject "Art" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
